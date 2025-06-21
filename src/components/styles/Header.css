@@ -1,0 +1,88 @@
+/* Container for the whole header */
+.container {
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 2vh 0;
+  margin-bottom: 3vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Logo text */
+.logo-text {
+  font-family: Poppins, sans-serif;
+  margin-bottom: 2vh;
+  font-weight: 500;
+}
+
+.logo-title {
+  font-size: 24px;
+  /* reverted from vh */
+}
+
+/* Dark mode */
+.dark-header {
+  background-color: rgba(18, 18, 18, 0.94);
+  color: white;
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+.dark-header-logo {
+  background-color: rgba(18, 18, 18, 0.94);
+  color: white;
+}
+
+/* Navigation */
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  padding: 0.5vh 1vw;
+  transition: border-bottom 0.1s ease-in-out, font-weight 0.2s ease-in-out;
+  border-radius: 4px;
+}
+
+.nav-link:hover {
+  color: #0a4f99;
+}
+
+.nav-link.active {
+  color: #0a4f99;
+  font-weight: bolder;
+  border-bottom: 2px solid currentColor;
+}
+
+.dark-header .nav-link {
+  color: white;
+}
+
+.dark-header .nav-link.active {
+  color: #66b2ff;
+}

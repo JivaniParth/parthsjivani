@@ -1,0 +1,33 @@
+.footer-container {
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.footer {
+  padding: 1vh 0;
+  margin: 2vh 0;
+  border-top: 1px solid #ccc;
+  text-align: center;
+}
+
+.footer-content {
+  text-align: center;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-text {
+  font-size: 24px;
+}
+
+.footer-author {
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+}
+
+.dark-footer {
+  color: rgb(255, 255, 255);
+}

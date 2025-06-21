@@ -1,0 +1,74 @@
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Light Mode (Default) */
+body {
+  background-color: white;
+  color: black;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Dark Mode */
+body.dark {
+  background-color: #121212;
+  color: white;
+}
+
+/* Floating Toggle Button */
+.toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #333;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 9999; /* Keeps it above all components */
+  transition: background 0.3s, transform 0.2s;
+}
+
+.toggle-btn:hover {
+  background: #555;
+  transform: scale(1.1);
+}
+
+body.dark .toggle-btn {
+  background: white;
+  color: black;
+}
+
+body.dark .card {
+  background-color: #1e1e1e;
+  color: white;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+body.dark .card p {
+  color: white !important;
+}
+
+body.dark input,
+body.dark textarea {
+  background-color: #1e1e1e; /* Dark gray background */
+  color: white; /* White text */
+  border: 1px solid #444; /* Slightly lighter border */
+}
+
+/* Change Placeholder Text Color */
+body.dark input::placeholder,
+body.dark textarea::placeholder {
+  color: #aaa; /* Light gray for better visibility */
+}
+
+body.dark input:focus,
+body.dark textarea:focus {
+  background-color: #1e1e1e; /* Dark gray background */
+  color: white !important;
+  border: 1px solid #555; /* Darker border */
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); /* Softer glow */
+}
