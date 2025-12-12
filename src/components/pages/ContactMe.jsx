@@ -38,6 +38,7 @@ export default function Contactme() {
   });
   const [loading, setLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
+  const [errors, setErrors] = useState({});
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -107,13 +108,58 @@ export default function Contactme() {
     tap: { scale: 0.95 },
   };
 
+  const validateField = (name, value) => {
+    const trimmed = value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    switch (name) {
+      case "name":
+        return trimmed ? "" : "Name is required.";
+      case "email":
+        return emailRegex.test(trimmed) ? "" : "Enter a valid email address (e.g., name@example.com).";
+      case "contactNo": {
+        const digits = trimmed.replace(/\D/g, "");
+        if (!digits) return "Phone number is required.";
+        if (digits.length < 7 || digits.length > 15) {
+          return "Use 7-15 digits. Include country code if needed.";
+        }
+        return "";
+      }
+      case "subject":
+        return trimmed ? "" : "Subject is required.";
+      case "message":
+        return trimmed.length >= 10 ? "" : "Message should be at least 10 characters.";
+      default:
+        return "";
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const error = validateField(name, value, { ...formData, [name]: value });
+    setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newErrors = Object.keys(formData).reduce((acc, key) => {
+      const err = validateField(key, formData[key], formData);
+      if (err) acc[key] = err;
+      return acc;
+    }, {});
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
+      setSubmitMessage("❌ Please fix the highlighted fields.");
+      return;
+    }
+
     setLoading(true);
     setSubmitMessage("");
 
@@ -137,6 +183,7 @@ export default function Contactme() {
           subject: "",
           message: "",
         });
+        setErrors({});
         // Clear message after 3 seconds
         setTimeout(() => setSubmitMessage(""), 3000);
       }
@@ -331,13 +378,15 @@ export default function Contactme() {
               </label>
               <motion.input
                 type="text"
-                className="form-control"
+                className={`form-control ${errors.name ? "has-error" : ""}`}
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 whileFocus="focus"
                 variants={inputVariants}
               />
+              {errors.name && <p className="error-text">{errors.name}</p>}
             </motion.div>
             <motion.div
               className="col-md-4"
@@ -352,13 +401,15 @@ export default function Contactme() {
               </label>
               <motion.input
                 type="email"
-                className="form-control"
+                className={`form-control ${errors.email ? "has-error" : ""}`}
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 whileFocus="focus"
                 variants={inputVariants}
               />
+              {errors.email && <p className="error-text">{errors.email}</p>}
             </motion.div>
             <motion.div
               className="col-md-4"
@@ -369,17 +420,20 @@ export default function Contactme() {
               viewport={{ once: true }}
             >
               <label htmlFor="inputContactNo" className="form-label">
-                Contact No
+                Phone Number
               </label>
               <motion.input
                 type="tel"
-                className="form-control"
+                className={`form-control ${errors.contactNo ? "has-error" : ""}`}
                 name="contactNo"
                 value={formData.contactNo}
                 onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder="Include country code, e.g., +1 9876543210"
                 whileFocus="focus"
                 variants={inputVariants}
               />
+              {errors.contactNo && <p className="error-text">{errors.contactNo}</p>}
             </motion.div>
             <motion.div
               className="col-md-12"
@@ -394,13 +448,15 @@ export default function Contactme() {
               </label>
               <motion.input
                 type="text"
-                className="form-control"
+                className={`form-control ${errors.subject ? "has-error" : ""}`}
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 whileFocus="focus"
                 variants={inputVariants}
               />
+              {errors.subject && <p className="error-text">{errors.subject}</p>}
             </motion.div>
             <motion.div
               className="col-12"
@@ -419,9 +475,11 @@ export default function Contactme() {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
+                onBlur={handleBlur}
                 whileFocus="focus"
                 variants={inputVariants}
               />
+              {errors.message && <p className="error-text">{errors.message}</p>}
             </motion.div>
             {submitMessage && (
               <motion.div
