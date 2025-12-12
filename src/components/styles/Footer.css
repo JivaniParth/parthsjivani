@@ -1,33 +1,65 @@
 .footer-container {
   padding-left: 2vw;
   padding-right: 2vw;
+  width: 100%;
 }
 
 .footer {
-  padding: 1vh 0;
-  margin: 2vh 0;
-  border-top: 1px solid #ccc;
+  padding: 2rem 1rem;
+  margin: 2rem 0 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   text-align: center;
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .footer-content {
   text-align: center;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  line-height: 1.6;
 }
 
 .footer-link {
   text-decoration: none;
   color: inherit;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #007bff;
 }
 
 .footer-text {
-  font-size: 24px;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  margin: 0.5rem 0;
 }
 
 .footer-author {
   font-family: Poppins, sans-serif;
   font-weight: 600;
+  color: #007bff;
 }
 
 .dark-footer {
-  color: rgb(255, 255, 255);
+  color: white;
+}
+
+body.dark .footer {
+  background: rgba(255, 255, 255, 0.05);
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== MOBILE STYLES (480px and below) ===== */
+@media (max-width: 480px) {
+  .footer {
+    padding: 1.5rem 0.75rem;
+    margin: 1.5rem 0 0 0;
+  }
+
+  .footer-content {
+    font-size: 0.85rem;
+  }
+
+  .footer-text {
+    font-size: 0.85rem;
+  }
 }

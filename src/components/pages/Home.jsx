@@ -79,7 +79,7 @@ export default function Home() {
             className="photo"
             style={{
               width: "50%",
-              margin: "20px",
+              margin: "clamp(0.5rem, 3vw, 2rem)",
             }}
             variants={imageVariants}
           >
@@ -90,7 +90,7 @@ export default function Home() {
               whileHover="hover"
             />
           </motion.div>
-          <motion.div className="name" style={{ margin: "20px" }}>
+          <motion.div className="name" style={{ margin: "clamp(0.5rem, 3vw, 2rem)" }}>
             <motion.h1 style={{ fontSize: "4rem" }} variants={itemVariants}>
               Namaste! 🙏
             </motion.h1>
@@ -115,7 +115,12 @@ export default function Home() {
               type="button"
               onClick={handleSubmitButtonClick}
               className="btn btn-info"
-              style={{ padding: "10px", margin: "10px", fontWeight: "600" }}
+              style={{ 
+                padding: "clamp(10px, 2vw, 15px) clamp(15px, 4vw, 30px)",
+                margin: "clamp(0.75rem, 2vw, 1.5rem) clamp(0.5rem, 2vw, 1rem)",
+                fontWeight: "600",
+                fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
+              }}
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
@@ -158,7 +163,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h1 style={{ fontSize: "3.2rem", marginBottom: "25px" }}>
+            <h1 style={{ fontSize: "3.2rem", marginBottom: "25px", textAlign: "center" }}>
               Web Developing
             </h1>
             <div className="softwareSkills">

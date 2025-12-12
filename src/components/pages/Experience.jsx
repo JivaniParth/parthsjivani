@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import "../styles/Experience.css";
 
 const itemVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -20,9 +21,9 @@ export default function Experience() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginTop: "40px",
-            marginBottom: "40px",
-            padding: "40px 70px",
+            marginTop: "clamp(1rem, 4vw, 3rem)",
+            marginBottom: "clamp(1rem, 4vw, 3rem)",
+            padding: "clamp(1rem, 3vw, 2.5rem)",
           }}
           variants={itemVariants}
           initial="hidden"
@@ -30,8 +31,25 @@ export default function Experience() {
           viewport={{ once: true }}
         >
           <motion.div
+            className="photo exp-photo-1"
+            style={{ 
+              margin: "clamp(0.5rem, 2vw, 1.5rem)", 
+              padding: "clamp(0.5rem, 2vw, 1.5rem)" 
+            }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <img src="/ishitechnolabs.png" alt="Ishi Technolabs" />
+          </motion.div>
+          <motion.div
             className="schooldetails"
-            style={{ margin: "25px", padding: "25px" }}
+            style={{ 
+              margin: "clamp(0.5rem, 2vw, 1.5rem)", 
+              padding: "clamp(0.5rem, 2vw, 1.5rem)" 
+            }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -58,17 +76,6 @@ export default function Experience() {
               experience.
             </p>
           </motion.div>
-          <motion.div
-            className="photo"
-            style={{ margin: "25px", padding: "25px" }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <img src="/ishitechnolabs.png" alt="Ishi Technolabs" />
-          </motion.div>
         </motion.div>
         <motion.div
           className="container flex degree"
@@ -76,9 +83,9 @@ export default function Experience() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginTop: "40px",
-            marginBottom: "40px",
-            padding: "40px 70px",
+            marginTop: "clamp(1rem, 4vw, 3rem)",
+            marginBottom: "clamp(1rem, 4vw, 3rem)",
+            padding: "clamp(1rem, 3vw, 2.5rem)",
           }}
           variants={itemVariants}
           initial="hidden"
@@ -86,19 +93,11 @@ export default function Experience() {
           viewport={{ once: true }}
         >
           <motion.div
-            className="photo"
-            style={{ margin: "25px", padding: "25px" }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <img src="/goldenmace.png" alt="Goldenmace IT Solutions" />
-          </motion.div>
-          <motion.div
             className="degreedetails"
-            style={{ margin: "25px", padding: "25px" }}
+            style={{ 
+              margin: "clamp(0.5rem, 2vw, 1.5rem)", 
+              padding: "clamp(0.5rem, 2vw, 1.5rem)" 
+            }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -123,6 +122,20 @@ export default function Experience() {
               using ReactJS. Worked on real-world projects, enhancing skills in
               front-end development, state management, and API integration.
             </p>
+          </motion.div>
+          <motion.div
+            className="photo exp-photo-2"
+            style={{ 
+              margin: "clamp(0.5rem, 2vw, 1.5rem)", 
+              padding: "clamp(0.5rem, 2vw, 1.5rem)" 
+            }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <img src="/goldenmace.png" alt="Goldenmace IT Solutions" />
           </motion.div>
         </motion.div>
       </div>

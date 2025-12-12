@@ -162,7 +162,7 @@ export default function Contactme() {
             className="photo"
             style={{
               width: "50%",
-              margin: "20px",
+              margin: "clamp(0.5rem, 3vw, 2rem)",
             }}
             variants={imageVariants}
           >
@@ -173,15 +173,15 @@ export default function Contactme() {
               whileHover="hover"
             />
           </motion.div>
-          <motion.div className="name" style={{ margin: "20px" }}>
-            <motion.h1 style={{ fontSize: "4rem" }} variants={itemVariants}>
+          <motion.div className="name">
+            <motion.h1 style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }} variants={itemVariants}>
               Namaste! 🙏
             </motion.h1>
             <motion.h2 variants={itemVariants}>
               I&apos;m{" "}
               <span
                 style={{
-                  fontSize: "2.7rem",
+                  fontSize: "clamp(1.5rem, 4vw, 2.7rem)",
                   fontFamily: "Poppins",
                   fontWeight: "600",
                 }}
@@ -190,7 +190,7 @@ export default function Contactme() {
               </span>
               .
             </motion.h2>
-            <motion.p style={{ fontSize: "20px" }} variants={itemVariants}>
+            <motion.p style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }} variants={itemVariants}>
               You can contact me at the places mentioned below.
               <br /> I will try to get back to you as fast as I can.
             </motion.p>
@@ -292,8 +292,13 @@ export default function Contactme() {
               <SocialIcon url="../parth-jivani-resume.pdf">
                 <motion.button
                   type="button"
-                  className="btn btn-info"
-                  style={{ padding: "10px", margin: "10px", fontWeight: "600" }}
+                  className="btn btn-info resumeButton"
+                  style={{ 
+                    padding: "clamp(10px, 2vw, 15px) clamp(15px, 4vw, 30px)",
+                    margin: "clamp(0.5rem, 2vw, 1.5rem) clamp(0.5rem, 2vw, 1rem)",
+                    fontWeight: "600",
+                    fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
+                  }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -305,7 +310,7 @@ export default function Contactme() {
         </motion.div>
         <motion.div
           className="contact-form"
-          style={{ marginTop: "20px" }}
+          style={{ marginTop: "clamp(1rem, 3vw, 2rem)" }}
           variants={formVariants}
           initial="hidden"
           whileInView="visible"

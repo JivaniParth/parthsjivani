@@ -1,0 +1,230 @@
+.content {
+  margin-top: 80px;
+  padding-top: 2rem;
+  width: 100%;
+}
+
+/* Degree/Education Card */
+.degree, .masters-degree {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem 0;
+  padding: 2rem;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+}
+
+.degree:hover, .masters-degree:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: translateY(-5px);
+}
+
+.degreedetails,
+.educationdetails {
+  flex: 1;
+  min-width: 280px;
+  padding: 1.5rem;
+}
+
+.degreedetails h5 {
+  margin: 0 0 0.5rem 0;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.degreedetails h1 {
+  margin: 0.5rem 0;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: #007bff;
+}
+
+.degreedetails h3 {
+  margin: 0.5rem 0 1rem 0;
+  font-size: clamp(0.95rem, 3vw, 1.5rem);
+  font-weight: 600;
+}
+
+.degreedetails ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.degreedetails li {
+  margin: 0.75rem 0;
+  line-height: 1.6;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+}
+
+/* Photo Section */
+.photo {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.photo img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.2);
+}
+
+body.dark .degree, body.dark .masters-degree {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark .degree:hover, body.dark .masters-degree:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Grid for icon-based skills */
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+  padding: 2rem 0;
+}
+
+.skillItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+/* ===== TABLET STYLES (768px and below) ===== */
+@media (max-width: 768px) {
+  .content {
+    margin-top: 70px;
+    padding-top: 1.5rem;
+  }
+
+  .degree, .masters-degree {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+  }
+
+  .degreedetails,
+  .photo {
+    width: 100%;
+    min-width: auto;
+    padding: 1rem;
+  }
+
+  .degreedetails h1 {
+    font-size: 1.8rem;
+  }
+
+  .degreedetails h3 {
+    font-size: 1.2rem;
+  }
+
+  .photo img {
+    max-width: 300px;
+  }
+
+  /* Reorder images to top on tablet and below */
+  .degree, .masters-degree {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .degree-photo-1 {
+    order: -1;
+  }
+
+  .degree-photo-2 {
+    order: -1;
+  }
+
+  .degree-photo-3 {
+    order: -1;
+    width: 100% !important;
+  }
+}
+
+/* ===== MOBILE STYLES (480px and below) ===== */
+@media (max-width: 480px) {
+  .content {
+    margin-top: 60px;
+    padding-top: 1rem;
+  }
+
+  .degree {
+    margin: 1rem 0 !important;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .masters-degree {
+    margin: 4.5rem 0 1rem !important;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .degreedetails {
+    padding: 0.75rem;
+  }
+
+  .photo {
+    padding: 1rem !important;
+  }
+
+  .degreedetails h5 {
+    font-size: 0.85rem;
+  }
+
+  .degreedetails h1 {
+    font-size: 1.5rem;
+    margin: 0.3rem 0;
+  }
+
+  .degreedetails h3 {
+    font-size: 1rem;
+    margin: 0.3rem 0 0.75rem 0;
+  }
+
+  .degreedetails li {
+    margin: 0.5rem 0;
+    font-size: 0.85rem;
+  }
+
+  .photo img {
+    max-width: 250px;
+    border-radius: 8px;
+  }
+
+  /* Reorder images to top on mobile */
+  .degree-photo-1 {
+    order: -1;
+  }
+
+  .degree-photo-2 {
+    order: -1;
+  }
+
+  .degree-photo-3 {
+    order: -1;
+    width: 100% !important;
+  }
+}

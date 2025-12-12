@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import "../styles/Education.css";
 
 const itemVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -13,14 +14,14 @@ export default function Education() {
   return (
     <>
       <motion.div
-        className="container flex degree"
+        className="container flex masters-degree"
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginTop: "40px",
-          marginBottom: "40px",
-          padding: "40px 50px",
+          marginTop: "clamp(1rem, 4vw, 3rem)",
+          marginBottom: "clamp(1rem, 4vw, 3rem)",
+          padding: "clamp(1rem, 3vw, 2.5rem)",
         }}
         variants={itemVariants}
         initial="hidden"
@@ -28,8 +29,25 @@ export default function Education() {
         viewport={{ once: true }}
       >
         <motion.div
+          className="photo degree-photo-1"
+          style={{ 
+            margin: "clamp(0.5rem, 2vw, 1.5rem)", 
+            padding: "clamp(0.5rem, 2vw, 1.5rem)" 
+          }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <img src="/new-nuv.png" alt="NUV" />
+        </motion.div>
+        <motion.div
           className="degreedetails"
-          style={{ margin: "25px", padding: "25px" }}
+          style={{ 
+            margin: "clamp(0.5rem, 2vw, 1.5rem)", 
+            padding: "clamp(0.5rem, 2vw, 1.5rem)" 
+          }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -48,17 +66,6 @@ export default function Education() {
             <li>I have secured 8.86 CGPA in this course.</li>
           </ul>
         </motion.div>
-        <motion.div
-          className="photo"
-          style={{ margin: "25px", padding: "25px" }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <img src="/new-nuv.png" alt="NUV" />
-        </motion.div>
       </motion.div>
       <motion.div
         className="container flex degree"
@@ -66,9 +73,9 @@ export default function Education() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginTop: "40px",
-          marginBottom: "40px",
-          padding: "40px 50px",
+          marginTop: "clamp(1rem, 4vw, 3rem)",
+          marginBottom: "clamp(1rem, 4vw, 3rem)",
+          padding: "clamp(1rem, 3vw, 2.5rem)",
         }}
         variants={itemVariants}
         initial="hidden"
@@ -76,19 +83,11 @@ export default function Education() {
         viewport={{ once: true }}
       >
         <motion.div
-          className="photo"
-          style={{ margin: "25px", padding: "25px" }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <img src="/college.png" alt="SSEC" />
-        </motion.div>
-        <motion.div
           className="degreedetails"
-          style={{ margin: "25px", padding: "25px" }}
+          style={{ 
+            margin: "clamp(0.5rem, 2vw, 1.5rem)", 
+            padding: "clamp(0.5rem, 2vw, 1.5rem)" 
+          }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -107,6 +106,20 @@ export default function Education() {
             <li>I have secured 7.49 CGPA in this course.</li>
           </ul>
         </motion.div>
+        <motion.div
+          className="photo degree-photo-2"
+          style={{ 
+            margin: "clamp(0.5rem, 2vw, 1.5rem)", 
+            padding: "clamp(0.5rem, 2vw, 1.5rem)" 
+          }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <img src="/college.png" alt="SSEC" />
+        </motion.div>
       </motion.div>
       <motion.div
         className="container flex school"
@@ -114,9 +127,9 @@ export default function Education() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginTop: "40px",
-          marginBottom: "40px",
-          padding: "40px 50px",
+          marginTop: "clamp(1rem, 4vw, 3rem)",
+          marginBottom: "clamp(1rem, 4vw, 3rem)",
+          padding: "clamp(1rem, 3vw, 2.5rem)",
         }}
         variants={itemVariants}
         initial="hidden"
@@ -124,8 +137,30 @@ export default function Education() {
         viewport={{ once: true }}
       >
         <motion.div
+          className="photo degree-photo-3"
+          style={{ 
+            width: "71%", 
+            margin: "clamp(0.5rem, 2vw, 1.5rem)", 
+            padding: "clamp(0.5rem, 2vw, 1.5rem)" 
+          }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <img
+            src="/logo-Advait-768x197.png"
+            alt="Advait Vidhyaniketan"
+            style={{ width: "100%" }}
+          />
+        </motion.div>
+        <motion.div
           className="schooldetails"
-          style={{ margin: "25px", padding: "25px" }}
+          style={{ 
+            margin: "clamp(0.5rem, 2vw, 1.5rem)", 
+            padding: "clamp(0.5rem, 2vw, 1.5rem)" 
+          }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -139,21 +174,6 @@ export default function Education() {
             With 70% in 12<sup>th</sup> {"("}Science{")"} and 82.33% in 10
             <sup>th</sup>.
           </h4>
-        </motion.div>
-        <motion.div
-          className="photo"
-          style={{ width: "71%", margin: "25px", padding: "25px" }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src="/logo-Advait-768x197.png"
-            alt="Advait Vidhyaniketan"
-            style={{ width: "100%" }}
-          />
         </motion.div>
       </motion.div>
     </>
