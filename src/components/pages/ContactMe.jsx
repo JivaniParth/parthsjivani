@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import "../styles/Contactme.css";
+import "../styles/ContactMe.css";
 
 // Initialize EmailJS
 emailjs.init("5Zbp-yAz0vv5X7lKq");
