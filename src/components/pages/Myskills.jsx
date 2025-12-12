@@ -131,7 +131,7 @@ const MySkills = () => {
   return (
     <div className="container py-5">
       <motion.div
-        className="text-center mb-5 content"
+        className="text-center mb-5 skills-content"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}

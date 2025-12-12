@@ -184,8 +184,7 @@
   }
 
   .photo svg {
-    width: 100%;
-    max-width: 260px;
+    display: none;
   }
 
   .photo img {

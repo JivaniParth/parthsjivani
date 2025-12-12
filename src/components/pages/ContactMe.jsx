@@ -152,7 +152,7 @@ export default function Contactme() {
     <>
       <div className="container">
         <motion.div
-          className="flex content"
+          className="flex contact-me-content"
           style={{ display: "flex", alignItems: "center" }}
           variants={containerVariants}
           initial="hidden"

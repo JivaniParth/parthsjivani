@@ -21,7 +21,7 @@ export default function Experience() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            marginTop: "clamp(1rem, 4vw, 3rem)",
+            marginTop: "clamp(5rem, 4vw, 3rem)",
             marginBottom: "clamp(1rem, 4vw, 3rem)",
             padding: "clamp(1rem, 3vw, 2.5rem)",
           }}

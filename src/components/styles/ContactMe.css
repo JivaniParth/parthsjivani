@@ -1,4 +1,4 @@
-.content {
+.contact-me-content {
   margin-top: 80px;
   padding-top: 2rem;
   width: 100%;
@@ -158,7 +158,7 @@ body.dark .errorMessage {
 
 /* ===== TABLET STYLES (768px and below) ===== */
 @media (max-width: 768px) {
-  .content {
+  .contact-me-content {
     margin-top: 70px;
     padding-top: 1.5rem;
     text-align: center;
@@ -196,7 +196,7 @@ body.dark .errorMessage {
 
 /* ===== MOBILE STYLES (480px and below) ===== */
 @media (max-width: 480px) {
-  .content {
+  .contact-me-content {
     margin-top: 60px;
     padding-top: 1rem;
     text-align: center;
