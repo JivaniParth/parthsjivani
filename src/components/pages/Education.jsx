@@ -35,7 +35,7 @@ export default function Education() {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h5>Master&apos;s Degree done in</h5>
+          <h5>Pursuing Master&apos;s Degree from</h5>
           <h1>Navrachana University</h1>
           <h3>Master of Technology in Computer Science and Engineering</h3>
           <h5>August 2025 to Present</h5>
