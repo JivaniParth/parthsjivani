@@ -1,18 +1,32 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
+import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import "../styles/Contactme.css";
+
+// Initialize EmailJS
+emailjs.init("5Zbp-yAz0vv5X7lKq");
 
 function SocialIcon({ url, children }) {
   return (
-    <a
+    <motion.a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
       className="social-icon"
+      whileHover={{ scale: 1.15, y: -5 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }}
     >
       {children}
-    </a>
+    </motion.a>
   );
 }
+
+SocialIcon.propTypes = {
+  url: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export default function Contactme() {
   const [formData, setFormData] = useState({
@@ -22,60 +36,149 @@ export default function Contactme() {
     subject: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8, x: -50 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+    hover: { scale: 1.05, transition: { duration: 0.3 } },
+  };
+
+  const formVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, delay: 0.3 },
+    },
+  };
+
+  const inputVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: (i) => ({
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, delay: i * 0.1 },
+    }),
+    focus: {
+      boxShadow: "0 0 20px rgba(0,123,255,0.5)",
+      transition: { duration: 0.3 },
+    },
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, delay: 0.6 },
+    },
+    hover: {
+      scale: 1.05,
+      boxShadow: "0 10px 20px rgba(0,0,0,0.2)",
+      transition: { duration: 0.3 },
+    },
+    tap: { scale: 0.95 },
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setSubmitMessage("");
 
-    const { name, email, contactNo, subject, message } = formData;
+    try {
+      // Send email using EmailJS
+      const result = await emailjs.send("service_sej79et", "template_rlpxrqs", {
+        name: formData.name,
+        email: formData.email,
+        contact_number: formData.contactNo,
+        title: formData.subject,
+        message: formData.message,
+        time: new Date().toLocaleString(),
+      });
 
-    const toEmail = "parthjivani1504@email.com";
-
-    const mailtoLink = `mailto:${toEmail}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(
-      `Name: ${name}\nContact No: ${contactNo}\nEmail: ${email}\n\n${message}`
-    )}`;
-
-    window.open(mailtoLink, "_blank");
-
-    setForm({
-      name: "",
-      email: "",
-      contactNo: "",
-      subject: "",
-      message: "",
-    });
+      if (result.status === 200) {
+        setSubmitMessage("✅ Message sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          contactNo: "",
+          subject: "",
+          message: "",
+        });
+        // Clear message after 3 seconds
+        setTimeout(() => setSubmitMessage(""), 3000);
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setSubmitMessage("❌ Failed to send message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
       <div className="container">
-        <div
+        <motion.div
           className="flex content"
           style={{ display: "flex", alignItems: "center" }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
-          <div
+          <motion.div
             className="photo"
             style={{
               width: "50%",
               margin: "20px",
             }}
+            variants={imageVariants}
           >
-            <img
+            <motion.img
               src="/laptop-with-program-code.jpg"
               alt="Parth Jivani"
               style={{ width: "100%", borderRadius: "50px" }}
+              whileHover="hover"
             />
-          </div>
-          <div className="name" style={{ margin: "20px" }}>
-            <h1 style={{ fontSize: "4rem" }}>Namaste! 🙏</h1>
-            <h2>
-              I'm{" "}
+          </motion.div>
+          <motion.div className="name" style={{ margin: "20px" }}>
+            <motion.h1 style={{ fontSize: "4rem" }} variants={itemVariants}>
+              Namaste! 🙏
+            </motion.h1>
+            <motion.h2 variants={itemVariants}>
+              I&apos;m{" "}
               <span
                 style={{
                   fontSize: "2.7rem",
@@ -86,180 +189,280 @@ export default function Contactme() {
                 Parth Jivani
               </span>
               .
-            </h2>
-            <p style={{ fontSize: "20px" }}>
+            </motion.h2>
+            <motion.p style={{ fontSize: "20px" }} variants={itemVariants}>
               You can contact me at the places mentioned below.
               <br /> I will try to get back to you as fast as I can.
-            </p>
-            <div
+            </motion.p>
+            <motion.div
               className="softwareSkillsIcon"
               style={{ display: "flex", justifyContent: "space-evenly" }}
+              variants={itemVariants}
             >
               <SocialIcon url="https://linkedin.com/in/parthsjivani">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="45px"
-                  height="45px"
-                  viewBox="0 0 16 16"
-                  fill="none"
+                  width="45"
+                  height="45"
+                  viewBox="0 0 72 72"
                 >
+                  <rect width="72" height="72" rx="4" fill="#0077B5" />
                   <path
-                    fill="#0A66C2"
-                    d="M12.225 12.225h-1.778V9.44c0-.664-.012-1.519-.925-1.519-.926 0-1.068.724-1.068 1.47v2.834H6.676V6.498h1.707v.783h.024c.348-.594.996-.95 1.684-.925 1.802 0 2.135 1.185 2.135 2.728l-.001 3.14zM4.67 5.715a1.037 1.037 0 01-1.032-1.031c0-.566.466-1.032 1.032-1.032.566 0 1.031.466 1.032 1.032 0 .566-.466 1.032-1.032 1.032zm.889 6.51h-1.78V6.498h1.78v5.727zM13.11 2H2.885A.88.88 0 002 2.866v10.268a.88.88 0 00.885.866h10.226a.882.882 0 00.889-.866V2.865a.88.88 0 00-.889-.864z"
+                    d="M13.139 27.848h9.623V58.81h-9.623V27.848zm4.813-15.391c3.077 0 5.577 2.5 5.577 5.577 0 3.08-2.5 5.581-5.577 5.581a5.58 5.58 0 1 1 0-11.158zm10.846 15.39h9.23v4.231h.128c1.283-2.434 4.424-5 9.105-5 9.744 0 11.544 6.413 11.544 14.75V58.81h-9.617V43.753c0-3.59-.066-8.209-5-8.209-5.007 0-5.778 3.911-5.778 7.947V58.81h-9.612V27.848z"
+                    fill="#fff"
+                  />
+                </svg>
+              </SocialIcon>
+              <SocialIcon url="https://github.com/JivaniParth">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="45"
+                  height="45"
+                  viewBox="0 0 98 96"
+                >
+                  <rect width="98" height="96" rx="8" fill="#24292F" />
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M49 18C32.431 18 19 31.431 19 48c0 13.237 8.588 24.462 20.488 28.426 1.497.276 2.047-.65 2.047-1.442 0-.71-.026-2.594-.041-5.091-8.341 1.813-10.102-4.02-10.102-4.02-1.362-3.458-3.326-4.38-3.326-4.38-2.72-1.859.206-1.821.206-1.821 3.007.212 4.589 3.086 4.589 3.086 2.672 4.578 7.01 3.254 8.72 2.488.272-1.934 1.046-3.255 1.902-4.003-6.653-.756-13.645-3.326-13.645-14.802 0-3.269 1.169-5.94 3.086-8.034-.31-.756-1.338-3.802.293-7.928 0 0 2.516-.806 8.238 3.07a28.53 28.53 0 0 1 7.5-1.008c2.545.012 5.11.343 7.5 1.008 5.716-3.876 8.229-3.07 8.229-3.07 1.634 4.126.605 7.172.296 7.928 1.92 2.094 3.083 4.765 3.083 8.034 0 11.502-7.004 14.038-13.676 14.778 1.074.927 2.032 2.753 2.032 5.546 0 4.003-.036 7.228-.036 8.21 0 .798.538 1.732 2.058 1.44C70.422 72.452 79 61.235 79 48c0-16.569-13.431-30-30-30z"
+                    fill="#fff"
                   />
                 </svg>
               </SocialIcon>
               <SocialIcon url="mailto:parthjivani1504@gmail.com">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="40px"
-                  height="40px"
-                  viewBox="0 0 31 29"
-                  fill="none"
+                  width="45"
+                  height="45"
+                  viewBox="0 0 48 48"
                 >
+                  <rect width="48" height="48" rx="8" fill="#fff" />
                   <path
-                    d="M2 11.9556C2 8.47078 2 6.7284 2.67818 5.39739C3.27473 4.22661 4.22661 3.27473 5.39739 2.67818C6.7284 2 8.47078 2 11.9556 2H20.0444C23.5292 2 25.2716 2 26.6026 2.67818C27.7734 3.27473 28.7253 4.22661 29.3218 5.39739C30 6.7284 30 8.47078 30 11.9556V20.0444C30 23.5292 30 25.2716 29.3218 26.6026C28.7253 27.7734 27.7734 28.7253 26.6026 29.3218C25.2716 30 23.5292 30 20.0444 30H11.9556C8.47078 30 6.7284 30 5.39739 29.3218C4.22661 28.7253 3.27473 27.7734 2.67818 26.6026C2 25.2716 2 23.5292 2 20.0444V11.9556Z"
-                    fill="white"
+                    fill="#4caf50"
+                    d="M45,16.2l-5,2.75l-5,4.75L35,40h7c1.657,0,3-1.343,3-3V16.2z"
                   />
                   <path
-                    d="M22.0515 8.52295L16.0644 13.1954L9.94043 8.52295V8.52421L9.94783 8.53053V15.0732L15.9954 19.8466L22.0515 15.2575V8.52295Z"
-                    fill="#EA4335"
+                    fill="#1e88e5"
+                    d="M3,16.2l3.614,1.71L13,23.7V40H6c-1.657,0-3-1.343-3-3V16.2z"
+                  />
+                  <polygon
+                    fill="#e53935"
+                    points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"
                   />
                   <path
-                    d="M23.6231 7.38639L22.0508 8.52292V15.2575L26.9983 11.459V9.17074C26.9983 9.17074 26.3978 5.90258 23.6231 7.38639Z"
-                    fill="#FBBC05"
+                    fill="#c62828"
+                    d="M3,12.298V16.2l10,7.5V11.2L9.876,8.859C9.132,8.301,8.228,8,7.298,8h0C4.924,8,3,9.924,3,12.298z"
                   />
                   <path
-                    d="M22.0508 15.2575V23.9924H25.8428C25.8428 23.9924 26.9219 23.8813 26.9995 22.6513V11.459L22.0508 15.2575Z"
-                    fill="#34A853"
-                  />
-                  <path
-                    d="M9.94811 24.0001V15.0732L9.94043 15.0669L9.94811 24.0001Z"
-                    fill="#C5221F"
-                  />
-                  <path
-                    d="M9.94014 8.52404L8.37646 7.39382C5.60179 5.91001 5 9.17692 5 9.17692V11.4651L9.94014 15.0667V8.52404Z"
-                    fill="#C5221F"
-                  />
-                  <path
-                    d="M9.94043 8.52441V15.0671L9.94811 15.0734V8.53073L9.94043 8.52441Z"
-                    fill="#C5221F"
-                  />
-                  <path
-                    d="M5 11.4668V22.6591C5.07646 23.8904 6.15673 24.0003 6.15673 24.0003H9.94877L9.94014 15.0671L5 11.4668Z"
-                    fill="#4285F4"
+                    fill="#fbc02d"
+                    d="M45,12.298V16.2l-10,7.5V11.2l3.124-2.341C38.868,8.301,39.772,8,40.702,8h0 C43.076,8,45,9.924,45,12.298z"
                   />
                 </svg>
               </SocialIcon>
               <SocialIcon url="https://wa.me/919712579779">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  aria-label="WhatsApp"
-                  role="img"
-                  height="40px"
-                  width="40px"
-                  viewBox="0 0 512 512"
+                  width="45"
+                  height="45"
+                  viewBox="0 0 45 45"
                 >
-                  <rect width="512" height="512" rx="15%" fill="#25d366" />
-                  <path
+                  <rect
+                    x="0"
+                    y="0"
+                    width="45"
+                    height="45"
+                    rx="8"
+                    ry="8"
                     fill="#25d366"
-                    stroke="#ffffff"
-                    stroke-width="26"
-                    d="M123 393l14-65a138 138 0 1150 47z"
                   />
-                  <path
-                    fill="#ffffff"
-                    d="M308 273c-3-2-6-3-9 1l-12 16c-3 2-5 3-9 1-15-8-36-17-54-47-1-4 1-6 3-8l9-14c2-2 1-4 0-6l-12-29c-3-8-6-7-9-7h-8c-2 0-6 1-10 5-22 22-13 53 3 73 3 4 23 40 66 59 32 14 39 12 48 10 11-1 22-10 27-19 1-3 6-16 2-18"
-                  />
+                  <g transform="translate(8.5, 8.5) scale(1.75)">
+                    <path
+                      fill="#ffffff"
+                      d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"
+                    />
+                  </g>
                 </svg>
               </SocialIcon>
-            </div>
-            <div
+            </motion.div>
+            <motion.div
               className="my-resume"
               style={{ display: "flex", justifyContent: "center" }}
+              variants={itemVariants}
             >
               <SocialIcon url="../parth-jivani-resume.pdf">
-                <button
+                <motion.button
                   type="button"
-                  class="btn btn-info"
+                  className="btn btn-info"
                   style={{ padding: "10px", margin: "10px", fontWeight: "600" }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   My Resume
-                </button>
+                </motion.button>
               </SocialIcon>
-            </div>
-          </div>
-        </div>
-        <div className="contact-form" style={{ marginTop: "20px" }}>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+        <motion.div
+          className="contact-form"
+          style={{ marginTop: "20px" }}
+          variants={formVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           <h3>Contact Me</h3>
-          <form class="row g-2" onSubmit={handleSubmit}>
-            <div class="col-md-4">
-              <label for="inputName" class="form-label">
+          <form className="row g-2" onSubmit={handleSubmit}>
+            <motion.div
+              className="col-md-4"
+              custom={0}
+              variants={inputVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <label htmlFor="inputName" className="form-label">
                 Name
               </label>
-              <input
+              <motion.input
                 type="text"
                 className="form-control"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                whileFocus="focus"
+                variants={inputVariants}
               />
-            </div>
-            <div class="col-md-4">
-              <label for="inputEmail" class="form-label">
+            </motion.div>
+            <motion.div
+              className="col-md-4"
+              custom={1}
+              variants={inputVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <label htmlFor="inputEmail" className="form-label">
                 Email
               </label>
-              <input
+              <motion.input
                 type="email"
                 className="form-control"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                whileFocus="focus"
+                variants={inputVariants}
               />
-            </div>
-            <div class="col-md-4">
-              <label for="inputContactNo" class="form-label">
+            </motion.div>
+            <motion.div
+              className="col-md-4"
+              custom={2}
+              variants={inputVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <label htmlFor="inputContactNo" className="form-label">
                 Contact No
               </label>
-              <input
+              <motion.input
                 type="tel"
                 className="form-control"
                 name="contactNo"
                 value={formData.contactNo}
                 onChange={handleChange}
+                whileFocus="focus"
+                variants={inputVariants}
               />
-            </div>
-            <div class="col-md-12">
-              <label for="inputSubject" class="form-label">
+            </motion.div>
+            <motion.div
+              className="col-md-12"
+              custom={3}
+              variants={inputVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <label htmlFor="inputSubject" className="form-label">
                 Subject
               </label>
-              <input
+              <motion.input
                 type="text"
                 className="form-control"
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
+                whileFocus="focus"
+                variants={inputVariants}
               />
-            </div>
-            <div className="col-12">
-              <label for="inputMessage" class="form-label">
+            </motion.div>
+            <motion.div
+              className="col-12"
+              custom={4}
+              variants={inputVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <label htmlFor="inputMessage" className="form-label">
                 Message
               </label>
-              <textarea
-                class="form-control"
+              <motion.textarea
+                className="form-control"
                 rows="3"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-              ></textarea>
-            </div>
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary">
-                Send Message
-              </button>
-            </div>
+                whileFocus="focus"
+                variants={inputVariants}
+              />
+            </motion.div>
+            {submitMessage && (
+              <motion.div
+                className="col-12"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div
+                  style={{
+                    padding: "12px 16px",
+                    borderRadius: "8px",
+                    backgroundColor: submitMessage.includes("✅")
+                      ? "#d4edda"
+                      : "#f8d7da",
+                    color: submitMessage.includes("✅") ? "#155724" : "#721c24",
+                    border: `1px solid ${
+                      submitMessage.includes("✅") ? "#c3e6cb" : "#f5c6cb"
+                    }`,
+                  }}
+                >
+                  {submitMessage}
+                </div>
+              </motion.div>
+            )}
+            <motion.div
+              className="col-12"
+              variants={buttonVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <motion.button
+                type="submit"
+                className="btn btn-primary"
+                whileHover="hover"
+                whileTap="tap"
+                variants={buttonVariants}
+                disabled={loading}
+              >
+                {loading ? "Sending..." : "Send Message"}
+              </motion.button>
+            </motion.div>
           </form>
-        </div>
+        </motion.div>
       </div>
     </>
   );

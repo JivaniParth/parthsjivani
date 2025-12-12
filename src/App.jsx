@@ -2,13 +2,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/pages/Header.jsx";
 import Footer from "./components/pages/Footer.jsx";
 import "./App.css";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
+    localStorage.getItem("theme") !== "light"
   );
+  const location = useLocation();
 
   useEffect(() => {
     if (darkMode) {
@@ -20,15 +22,26 @@ export default function App() {
     }
   }, [darkMode]);
 
+  // Scroll to top when route changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <>
       <Header darkMode={darkMode} />
       <Outlet />
       <Footer darkMode={darkMode} />
 
-      <button className="toggle-btn" onClick={() => setDarkMode(!darkMode)}>
+      <motion.button
+        className="toggle-btn"
+        onClick={() => setDarkMode(!darkMode)}
+        whileHover={{ scale: 1.1, rotate: 20 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      >
         {darkMode ? "🔅" : "🌙"}
-      </button>
+      </motion.button>
     </>
   );
 }
