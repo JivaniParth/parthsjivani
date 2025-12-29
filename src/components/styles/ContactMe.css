@@ -6,19 +6,429 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  color: #f5f5f5;
 }
+
+/* Contact Form Section */
+.contact-form {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-form h3 {
+  color: #66b2ff;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ===== REACT PHONE INPUT DARK THEME - BUILT FROM SCRATCH ===== */
+/* Library default CSS removed - complete custom implementation */
+
+/* Container wrapper */
+.phone-input-container {
+  width: 100%;
+  position: relative;
+}
+
+/* Hide library's default label (special-label) - we have our own */
+.phone-input-container .special-label {
+  display: none !important;
+}
+
+/* Main wrapper - unified border and background like other inputs */
+.phone-input-container .react-tel-input {
+  position: relative;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Hover state - grey border on entire component */
+.phone-input-container:hover .react-tel-input {
+  border-color: #555;
+}
+
+/* Focus state - blue glow on entire component (matching Message field) */
+.phone-input-container .react-tel-input:focus-within {
+  border-color: #66b2ff;
+  box-shadow: 0 0 0 3px rgba(102, 178, 255, 0.2), 0 0 12px rgba(102, 178, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Error state */
+.phone-input-container.has-error .react-tel-input {
+  border-color: #ef5350;
+  background-color: rgba(239, 83, 80, 0.05);
+}
+
+/* Flag dropdown container - transparent, no borders */
+.phone-input-container .react-tel-input .flag-dropdown {
+  background-color: transparent;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  position: relative;
+}
+
+/* Flag button - dark themed */
+.phone-input-container .react-tel-input .flag-dropdown .selected-flag {
+  background-color: transparent;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  padding: 0 0 0 12px;
+  transition: background-color 0.3s ease;
+  position: relative;
+  width: 52px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.phone-input-container .react-tel-input .flag-dropdown .selected-flag:hover {
+  background-color: rgba(42, 42, 42, 0.5);
+}
+
+.phone-input-container .react-tel-input .flag-dropdown .selected-flag:focus,
+.phone-input-container.open .react-tel-input .flag-dropdown .selected-flag {
+  background-color: rgba(42, 42, 42, 0.7);
+  outline: none;
+}
+
+/* Flag icon positioning */
+.phone-input-container .react-tel-input .flag-dropdown .selected-flag .flag {
+  position: relative;
+  top: 0;
+  margin: 0;
+  transform: scale(1);
+}
+
+/* Arrow in flag button */
+.phone-input-container .react-tel-input .flag-dropdown .selected-flag .arrow {
+  border-color: #888 transparent transparent;
+  border-width: 4px 3px 0;
+  border-style: solid;
+  position: relative;
+  top: 0;
+  margin-left: 6px;
+}
+
+.phone-input-container .react-tel-input .flag-dropdown .selected-flag:hover .arrow,
+.phone-input-container.open .react-tel-input .flag-dropdown .selected-flag .arrow {
+  border-top-color: #f5f5f5;
+}
+
+/* Dial code (country code next to flag) */
+.phone-input-container .react-tel-input .flag-dropdown .selected-flag .dial-code {
+  display: none;
+  height: auto;
+  min-height: 50px;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  background-color: transparent;
+  color: #f5f5f5;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.phone-input-container .react-tel-input input::placeholder {
+  color: #888;
+  opacity: 1;
+}
+
+.phone-input-container .react-tel-input input:focus {
+  outline: none;
+  background-color: transparent;
+  box-shadow: none;
+  border: none
+}
+
+.phone-input-container .react-tel-input input:focus {
+  outline: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  border: 1px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  margin-top: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: 0;
+}
+
+/* Country list items */
+.phone-input-container .country-list .country {
+  padding: 10px 12px;
+  color: #f5f5f5;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.phone-input-container .country-list .country:hover,
+.phone-input-container .country-list .country.highlight {
+  background-color: #2a2a2a;
+}
+
+.phone-input-container .country-list .country .flag {
+  margin-right: 8px;
+}
+
+.phone-input-container .country-list .country .dial-code {
+  color: #888;
+  font-size: 0.9rem;
+  margin-left: auto;
+  padding-left: 8px;
+}
+
+.phone-input-container .country-list .country .country-name {
+  color: #f5f5f5;
+  font-size: 0.95rem;
+}
+
+/* Search input in dropdown */
+.phone-input-container .country-list .search {
+  background-color: #0b0c10;
+  color: #f5f5f5;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 8px;
+  width: calc(100% - 16px);
+  font-size: 0.9rem;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+
+.phone-input-container .country-list .search::placeholder {
+  color: #888;
+}
+
+.phone-input-container .country-list .search:focus {
+  outline: none;
+  border-color: #66b2ff;
+  background-color: #1a1a1a;
+  box-shadow: 0 0 0 2px rgba(102, 178, 255, 0.2);
+}
+
+/* Search box container */
+.phone-input-container .country-list .search-box {
+  padding: 0;
+  margin: 0;
+}
+
+/* Scrollbar for dropdown */
+.phone-input-container .country-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.phone-input-container .country-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.phone-input-container .country-list::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+/* Open state styling */
+.phone-input-container.open .react-tel-input .flag-dropdown {
+  background-color: transparent;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .phone-input-container .react-tel-input input {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+    min-height: 48px;
+  }
+  
+  .phone-input-container .react-tel-input .flag-dropdown .selected-flag {
+    width: 48px;
+    padding-left: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .phone-input-container .react-tel-input input {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+    min-height: 46px;
+  }
+  
+  .phone-input-container .react-tel-input .flag-dropdown .selected-flag {
+    width: 46px;
+    padding-left: 8px;
+  }
+}
+
+/* ===== END PHONE INPUT CUSTOM STYLES;
+    padding: 0.7rem 0.9rem !important;
+    min-height: 48px !important;
+  }
+  
+  .phone-input-container .react-tel-input .flag-dropdown .selected-flag {
+    width: 48px !important;
+    padding-left: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .phone-input-container .react-tel-input input {
+    font-size: 0.9rem !important;
+    padding: 0.6rem 0.8rem !important;
+    min-height: 46px !important;
+  }
+  
+  .phone-input-container .react-tel-input .flag-dropdown .selected-flag {
+    width: 46px !important;
+    padding-left: 8px !important;
+  }
+}
+
+/* ===== END PHONE INPUT OVERRIDE ===== */
+
+/* Dropdown Menu */
+.phone-input-dropdown {
+  background-color: #1a1a1a !important;
+  border: 1px solid #333 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  margin-top: 4px !important;
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  z-index: 1000 !important;
+}
+
+/* Dropdown Items */
+.phone-input-dropdown .country {
+  padding: 10px 12px !important;
+  color: #f5f5f5 !important;
+  transition: background-color 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.phone-input-dropdown .country:hover {
+  background-color: #2a2a2a !important;
+}
+
+.phone-input-dropdown .country.highlight {
+  background-color: #2a2a2a !important;
+}
+
+.phone-input-dropdown .country .dial-code {
+  color: #888 !important;
+  font-size: 0.9rem !important;
+}
+
+.phone-input-dropdown .country .country-name {
+  color: #f5f5f5 !important;
+  font-size: 0.95rem !important;
+}
+
+/* Search Input in Dropdown */
+.phone-input-search {
+  background-color: #0b0c10 !important;
+  color: #f5f5f5 !important;
+  border: 1px solid #333 !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+  margin: 8px !important;
+  width: calc(100% - 16px) !important;
+  font-size: 0.9rem !important;
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.phone-input-search::placeholder {
+  color: #888 !important;
+}
+
+.phone-input-search:focus {
+  outline: none !important;
+  border-color: #66b2ff !important;
+  background-color: #1a1a1a !important;
+  box-shadow: 0 0 0 2px rgba(102, 178, 255, 0.2) !important;
+}
+
+/* Scrollbar for Dropdown */
+.phone-input-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.phone-input-dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.phone-input-dropdown::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+.phone-input-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* No Results Message */
+.phone-input-dropdown .no-entries-message {
+  color: #888 !important;
+  padding: 12px !important;
+  text-align: center !important;
+  font-size: 0.9rem !important;
+}
+
+/* Responsive adjustments to match other inputs */
+@media (max-width: 768px) {
+  .phone-input-field {
+    font-size: 0.95rem !important;
+    padding: 0.7rem 0.9rem 0.7rem 48px !important;
+  }
+  
+  .phone-input-button {
+    padding: 0.7rem 0.4rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .phone-input-field {
+    font-size: 0.9rem !important;
+    padding: 0.6rem 0.8rem 0.6rem 46px !important;
+  }
+  
+  .phone-input-button {
+    padding: 0.6rem 0.35rem !important;
+  }
+}
+
+/* ===== END PHONE INPUT STYLES ===== */
 
 /* Contact Form Container */
 .contactContainer {
   max-width: 700px;
   margin: 2rem auto;
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.02);
-  border-radius: 12px;
-}
-
-body.dark .contactContainer {
   background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
 }
 
 .contactContainer h2 {
@@ -35,66 +445,140 @@ body.dark .contactContainer {
   flex-direction: column;
 }
 
-.formGroup label {
+.formGroup label,
+.form-label {
   margin-bottom: 0.5rem;
   font-weight: 600;
   font-size: clamp(0.9rem, 2vw, 1rem);
+  color: #f5f5f5;
+  display: block;
 }
 
 .formGroup input,
-.formGroup textarea {
-  padding: 0.75rem;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 6px;
+.formGroup textarea,
+.form-control {
+  padding: 0.75rem 1rem;
+  background-color: #1a1a1a !important;
+  color: #f5f5f5 !important;
+  border: 1px solid #333;
+  border-radius: 8px;
   font-family: inherit;
   font-size: clamp(0.9rem, 2vw, 1rem);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.formGroup .has-error {
-  border-color: #e53935;
-  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+.formGroup textarea,
+.form-control[rows] {
+  resize: none !important;
+}
+
+/* Placeholder styling */
+.formGroup input::placeholder,
+.formGroup textarea::placeholder,
+.form-control::placeholder {
+  color: #888;
+  opacity: 1;
+}
+
+.formGroup input::-webkit-input-placeholder,
+.form-control::-webkit-input-placeholder {
+  color: #888;
+}
+
+.formGroup input::-moz-placeholder,
+.form-control::-moz-placeholder {
+  color: #888;
+}
+
+/* Error state */
+.formGroup .has-error,
+.form-control.has-error {
+  border-color: #ef5350 !important;
+  background-color: rgba(239, 83, 80, 0.05) !important;
 }
 
 .error-text {
-  color: #e53935;
+  color: #ef5350;
+  font-size: 0.85rem;
+  margin: 0.4rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.error-text::before {
+  content: "⚠";
   font-size: 0.9rem;
-  margin: 0.35rem 0 0;
 }
 
+/* Focus state with glow effect */
 .formGroup input:focus,
-.formGroup textarea:focus {
+.formGroup textarea:focus,
+.form-control:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  background-color: #1a1a1a !important;
+  color: #f5f5f5 !important;
+  border-color: #66b2ff !important;
+  box-shadow: 0 0 0 3px rgba(102, 178, 255, 0.2), 0 0 12px rgba(102, 178, 255, 0.3);
+  transform: translateY(-1px);
 }
 
-.formGroup textarea {
+/* Hover state */
+.formGroup input:hover:not(:focus),
+.formGroup textarea:hover:not(:focus),
+.form-control:hover:not(:focus) {
+  border-color: #555;
+}
+
+.formGroup textarea,
+.form-control[rows] {
   resize: vertical;
   min-height: 120px;
+  line-height: 1.6;
 }
 
 /* Submit Button */
-.submitBtn {
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
+.submitBtn,
+.btn-primary {
+  padding: 12px 32px !important;
+  background-color: #66b2ff !important;
+  color: #0b0c10 !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: clamp(0.9rem, 2vw, 1rem);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-size: clamp(0.95rem, 2vw, 1.05rem) !important;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
-.submitBtn:hover {
-  background-color: #0056b3;
+.submitBtn:hover,
+.btn-primary:hover {
+  background-color: #88c6ff !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 8px 20px rgba(102, 178, 255, 0.4) !important;
 }
 
-.submitBtn:active {
+.submitBtn:active,
+.btn-primary:active {
   transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(102, 178, 255, 0.3) !important;
+}
+
+.submitBtn:disabled,
+.btn-primary:disabled {
+  background-color: #444 !important;
+  color: #888 !important;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none !important;
+}
+
+.submitBtn:disabled:hover,
+.btn-primary:disabled:hover {
+  background-color: #444 !important;
+  transform: none;
 }
 
 /* Social Icons */

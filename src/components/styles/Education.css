@@ -2,10 +2,19 @@
   margin-top: 80px;
   padding-top: 2rem;
   width: 100%;
+  color: #f5f5f5;
+}
+
+.education-content {
+  margin-top: 80px;
+  padding-top: 2rem;
+  width: 100%;
+  color: #f5f5f5;
 }
 
 /* Degree/Education Card */
-.degree, .masters-degree {
+.degree,
+.masters-degree {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,12 +23,13 @@
   margin: 2rem 0;
   padding: 2rem;
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(255, 255, 255, 0.04);
   transition: all 0.3s ease;
 }
 
-.degree:hover, .masters-degree:hover {
-  background: rgba(0, 0, 0, 0.05);
+.degree:hover,
+.masters-degree:hover {
+  background: rgba(255, 255, 255, 0.08);
   transform: translateY(-5px);
 }
 
@@ -85,12 +95,14 @@
   box-shadow: 0 8px 24px rgba(0, 123, 255, 0.2);
 }
 
-body.dark .degree, body.dark .masters-degree {
-  background: rgba(255, 255, 255, 0.05);
+body.dark .degree,
+body.dark .masters-degree {
+  background: rgba(255, 255, 255, 0.04);
 }
 
-body.dark .degree:hover, body.dark .masters-degree:hover {
-  background: rgba(255, 255, 255, 0.1);
+body.dark .degree:hover,
+body.dark .masters-degree:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* Grid for icon-based skills */
@@ -117,7 +129,13 @@ body.dark .degree:hover, body.dark .masters-degree:hover {
     padding-top: 1.5rem;
   }
 
-  .degree, .masters-degree {
+  .education-content {
+    margin-top: 70px;
+    padding-top: 1.5rem;
+  }
+
+  .degree,
+  .masters-degree {
     flex-direction: column;
     gap: 1.5rem;
     margin: 1.5rem 0;
@@ -144,7 +162,8 @@ body.dark .degree:hover, body.dark .masters-degree:hover {
   }
 
   /* Reorder images to top on tablet and below */
-  .degree, .masters-degree {
+  .degree,
+  .masters-degree {
     display: flex;
     flex-direction: column;
   }
@@ -166,6 +185,11 @@ body.dark .degree:hover, body.dark .masters-degree:hover {
 /* ===== MOBILE STYLES (480px and below) ===== */
 @media (max-width: 480px) {
   .content {
+    margin-top: 60px;
+    padding-top: 1rem;
+  }
+
+  .education-content {
     margin-top: 60px;
     padding-top: 1rem;
   }

@@ -15,6 +15,20 @@ export default function Education() {
     <>
       <div className="container">
         <motion.div
+          className="text-center mb-5 education-content"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2 className="section-title" variants={itemVariants}>
+            Education
+          </motion.h2>
+          <motion.p className="lead" variants={itemVariants}>
+            Qualifications I have achieved
+          </motion.p>
+        </motion.div>
+        <motion.div
           className="container flex masters-degree"
           style={{
             display: "flex",

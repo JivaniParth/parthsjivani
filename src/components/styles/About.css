@@ -1,0 +1,36 @@
+/* Import Education styles first */
+@import "./Education.css";
+
+/* Import Skills styles */
+@import "./Myskills.css";
+
+/* About Page Wrapper */
+.about-page {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Education Section Wrapper - maintains original Education.css styling */
+.education-section {
+  margin-top: 80px;
+  padding-top: 2rem;
+}
+
+/* Skills Section Wrapper - maintains original Myskills.css styling */
+.skills-section {
+  margin-top: 4rem;
+  padding-top: 2rem;
+}
+
+/* Ensure proper spacing between sections */
+.education-section + .skills-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 4rem;
+  padding-top: 4rem;
+}
+
+/* Override skills-content margin to prevent double spacing */
+.skills-section .skills-content,
+.education-section .education-content {
+  margin-top: 0;
+}
