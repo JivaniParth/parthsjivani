@@ -8,39 +8,43 @@ export default function Projects() {
     {
       id: 1,
       title: "Project One",
-      description: "A brief description of the first project showcasing its key features and purpose.",
+      description:
+        "A brief description of the first project showcasing its key features and purpose.",
       techStack: ["React", "Node.js", "MongoDB", "Express"],
       imageURL: "https://via.placeholder.com/400x300",
       githubLink: "https://github.com",
-      liveDemoLink: "https://example.com"
+      liveDemoLink: "https://example.com",
     },
     {
       id: 2,
       title: "Project Two",
-      description: "A brief description of the second project highlighting its main functionality.",
+      description:
+        "A brief description of the second project highlighting its main functionality.",
       techStack: ["JavaScript", "CSS", "HTML", "Firebase"],
       imageURL: "https://via.placeholder.com/400x300",
       githubLink: "https://github.com",
-      liveDemoLink: "https://example.com"
+      liveDemoLink: "https://example.com",
     },
     {
       id: 3,
       title: "Project Three",
-      description: "A brief description of the third project explaining the problem it solves.",
+      description:
+        "A brief description of the third project explaining the problem it solves.",
       techStack: ["Python", "Django", "PostgreSQL"],
       imageURL: "https://via.placeholder.com/400x300",
       githubLink: "https://github.com",
-      liveDemoLink: "https://example.com"
+      liveDemoLink: "https://example.com",
     },
     {
       id: 4,
       title: "Project Four",
-      description: "A brief description of the fourth project demonstrating technical skills.",
+      description:
+        "A brief description of the fourth project demonstrating technical skills.",
       techStack: ["Vue.js", "TypeScript", "Tailwind"],
       imageURL: "https://via.placeholder.com/400x300",
       githubLink: "https://github.com",
-      liveDemoLink: "https://example.com"
-    }
+      liveDemoLink: "https://example.com",
+    },
   ];
 
   const [hoveredProject, setHoveredProject] = useState(null);
@@ -75,12 +79,48 @@ export default function Projects() {
 
   return (
     <div className="container projects-container">
+      {/* Coming Soon Banner */}
+      <motion.div
+        className="coming-soon-banner"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="banner-content">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#00bcd4"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </motion.div>
+          <h2>Coming Soon!</h2>
+          <p>
+            I&apos;m currently working on adding my projects. Check back soon to see
+            my latest work!
+          </p>
+        </div>
+      </motion.div>
+
       {/* Page Title */}
       <motion.div
         className="cardTitle"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
       >
         <h1>My Projects</h1>
         <p className="subtitle">Explore my recent work and side projects</p>

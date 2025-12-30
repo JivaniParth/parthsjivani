@@ -22,6 +22,11 @@ export default function Header({ darkMode }) {
     </motion.div>
   );
 
+  NavLink.propTypes = {
+    to: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+  };
+
   return (
     <div className="container">
       <header className={`header ${darkMode ? "dark-header" : ""}`}>
@@ -37,7 +42,14 @@ export default function Header({ darkMode }) {
               alt="Parth Jivani logo"
               style={{ display: "block", width: "40px", height: "40px" }}
             />
-            <span className={`logo-text ${darkMode ? "dark-header-logo" : ""}`} style={{ marginLeft: "12px", fontSize: "1.4rem", fontWeight: "600" }}>
+            <span
+              className={`logo-text ${darkMode ? "dark-header-logo" : ""}`}
+              style={{
+                marginLeft: "12px",
+                fontSize: "1.4rem",
+                fontWeight: "600",
+              }}
+            >
               parthsjivani
             </span>
           </motion.div>
@@ -62,6 +74,9 @@ export default function Header({ darkMode }) {
           </li>
           <li className="nav-item">
             <NavLink to="/experience" label="Experience" />
+          </li>
+          <li className="nav-item">
+            <NavLink to="/projects" label="Projects" />
           </li>
           <li className="nav-item">
             <NavLink to="/contact-me" label="Contact Me" />
