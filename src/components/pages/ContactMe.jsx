@@ -128,7 +128,8 @@ export default function Contactme() {
         if (!emailRegex.test(trimmed)) return "Please enter a valid email address";
         return "";
       case "contactNo": {
-        if (!value) return "Phone number is required";
+        // Phone number is optional - only validate if user provides a value
+        if (!value || value.trim() === '') return "";
         
         // Add + prefix if not present for validation
         const phoneWithPlus = value.startsWith('+') ? value : `+${value}`;
@@ -237,7 +238,9 @@ export default function Contactme() {
 
     setErrors(newErrors);
 
-    if (Object.keys(newErrors).length > 0) {
+    // Check if there are actual error messages (not just empty strings)
+    const hasErrors = Object.values(newErrors).some(error => error !== "");
+    if (hasErrors) {
       setSubmitMessage("❌ Please fix the highlighted fields.");
       return;
     }
@@ -496,25 +499,27 @@ export default function Contactme() {
               <label htmlFor="inputContactNo" className="form-label">
                 Phone Number
               </label>
-              <PhoneInput
-                country={'us'}
-                value={formData.contactNo}
-                onChange={handlePhoneChange}
-                onBlur={() => handleBlur({ target: { name: 'contactNo', value: formData.contactNo } })}
-                containerClass={`phone-input-container ${errors.contactNo ? "has-error" : ""}`}
-                inputClass="phone-input-field"
-                buttonClass="phone-input-button"
-                dropdownClass="phone-input-dropdown"
-                searchClass="phone-input-search"
-                enableSearch={true}
-                searchPlaceholder="Search country"
-                disableSearchIcon={false}
-                placeholder="Enter phone number"
-                inputProps={{
-                  name: 'contactNo',
-                  required: true,
-                }}
-              />
+              <div className={`phone-input-wrapper ${errors.contactNo ? "has-error" : ""}`}>
+                <PhoneInput
+                  country={'us'}
+                  value={formData.contactNo}
+                  onChange={handlePhoneChange}
+                  onBlur={() => handleBlur({ target: { name: 'contactNo', value: formData.contactNo } })}
+                  containerClass="phone-input-container"
+                  inputClass="phone-input-field"
+                  buttonClass="phone-input-button"
+                  dropdownClass="phone-input-dropdown"
+                  searchClass="phone-input-search"
+                  enableSearch={true}
+                  searchPlaceholder="Search country"
+                  disableSearchIcon={false}
+                  placeholder="Enter phone number"
+                  inputProps={{
+                    name: 'contactNo',
+                    required: false,
+                  }}
+                />
+              </div>
               {errors.contactNo && <p className="error-text">{errors.contactNo}</p>}
             </motion.div>
             <motion.div
@@ -553,7 +558,7 @@ export default function Contactme() {
                 Message
               </label>
               <motion.textarea
-                className="form-control"
+                className={`form-control ${errors.message ? "has-error" : ""}`}
                 rows="3"
                 name="message"
                 placeholder="Type your message here ..."
@@ -592,6 +597,7 @@ export default function Contactme() {
             )}
             <motion.div
               className="col-12"
+              style={{ display: "flex", justifyContent: "center" }}
               variants={buttonVariants}
               initial="hidden"
               whileInView="visible"
@@ -603,7 +609,7 @@ export default function Contactme() {
                 whileHover="hover"
                 whileTap="tap"
                 variants={buttonVariants}
-                disabled={loading}
+                disabled={loading || Object.values(errors).some(error => error !== "")}
               >
                 {loading ? "Sending..." : "Send Message"}
               </motion.button>

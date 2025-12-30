@@ -32,17 +32,24 @@
 /* Library default CSS removed - complete custom implementation */
 
 /* Container wrapper */
+.phone-input-wrapper {
+  width: 100%;
+  position: relative;
+}
+
 .phone-input-container {
   width: 100%;
   position: relative;
 }
 
 /* Hide library's default label (special-label) - we have our own */
+.phone-input-wrapper .special-label,
 .phone-input-container .special-label {
   display: none !important;
 }
 
 /* Main wrapper - unified border and background like other inputs */
+.phone-input-wrapper .react-tel-input,
 .phone-input-container .react-tel-input {
   position: relative;
   border: 1px solid #333;
@@ -55,24 +62,44 @@
 }
 
 /* Hover state - grey border on entire component */
+.phone-input-wrapper:hover .react-tel-input,
 .phone-input-container:hover .react-tel-input {
   border-color: #555;
 }
 
 /* Focus state - blue glow on entire component (matching Message field) */
+.phone-input-wrapper .react-tel-input:focus-within,
 .phone-input-container .react-tel-input:focus-within {
   border-color: #66b2ff;
   box-shadow: 0 0 0 3px rgba(102, 178, 255, 0.2), 0 0 12px rgba(102, 178, 255, 0.3);
   transform: translateY(-1px);
 }
 
-/* Error state */
-.phone-input-container.has-error .react-tel-input {
-  border-color: #ef5350;
-  background-color: rgba(239, 83, 80, 0.05);
+/* Error state - must come after focus to have higher specificity */
+.phone-input-wrapper.has-error .react-tel-input,
+.phone-input-container.has-error .react-tel-input,
+.has-error .react-tel-input {
+  border-color: #ef5350 !important;
+  background-color: rgba(239, 83, 80, 0.05) !important;
+}
+
+/* Error state on focus - red border even when focused */
+.phone-input-wrapper.has-error .react-tel-input:focus-within,
+.phone-input-container.has-error .react-tel-input:focus-within,
+.has-error .react-tel-input:focus-within {
+  border-color: #ef5350 !important;
+  box-shadow: 0 0 0 3px rgba(239, 83, 80, 0.2), 0 0 12px rgba(239, 83, 80, 0.3) !important;
+  transform: translateY(-1px);
+}
+
+/* Direct input error state for phone-input-field */
+.phone-input-field.error,
+input[name="contactNo"].error {
+  border-color: #ef5350 !important;
 }
 
 /* Flag dropdown container - transparent, no borders */
+.phone-input-wrapper .react-tel-input .flag-dropdown,
 .phone-input-container .react-tel-input .flag-dropdown {
   background-color: transparent;
   border: none;
