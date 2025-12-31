@@ -1,13 +1,27 @@
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/Header.css";
 
 export default function Header({ darkMode }) {
   const location = useLocation();
   const { pathname } = location;
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [menuOpen]);
 
   const NavLink = ({ to, label }) => (
     <motion.div

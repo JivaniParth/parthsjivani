@@ -157,11 +157,15 @@
     background: #0b0c10;
     backdrop-filter: blur(10px);
     flex-direction: column;
+    justify-content: flex-start;
     gap: 0;
-    padding: 12px 0;
+    padding: 2rem 0;
     display: none;
     z-index: 999;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid rgba(0, 188, 212, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
   }
 
   .nav.nav-open {
@@ -171,8 +175,9 @@
   .nav-item {
     width: 100%;
     justify-content: center;
-    padding: 12px 0;
+    padding: 1.25rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    min-height: 56px;
   }
 
   .nav-item:last-child {
@@ -180,13 +185,29 @@
   }
 
   .nav-link {
-    padding: 0;
+    padding: 0.75rem 1.5rem;
     border-bottom: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
   }
 
   .nav-link.active {
     color: #00bcd4;
     border-bottom: none;
+    background-color: rgba(0, 188, 212, 0.15);
+    position: relative;
+  }
+  
+  .nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background-color: #00bcd4;
+    border-radius: 0 4px 4px 0;
   }
   
   .nav-link.active::after {
@@ -206,7 +227,7 @@
 /* Dark mode mobile nav */
 .dark-header .nav {
   background: #0b0c10;
-  border-bottom-color: rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(0, 188, 212, 0.3);
 }
 
 .dark-header .nav-item {
