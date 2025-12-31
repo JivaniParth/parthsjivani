@@ -81,7 +81,6 @@ export default function Education() {
                 Internet of Things, Advanced Computer Networks, etc in this
                 course.
               </li>
-              <li>I have secured 8.86 CGPA in this course.</li>
             </ul>
           </motion.div>
         </motion.div>
@@ -113,7 +112,7 @@ export default function Education() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h5>Bachelor&apos;s Degree done in</h5>
+            <h5>Bachelor&apos;s Degree done from</h5>
             <h1>Shantilal Shah Engineering College</h1>
             <h3>Bachelor of Engineering in Information Technology</h3>
             <h5>August 2020 to May 2024</h5>
@@ -188,12 +187,12 @@ export default function Education() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h5>Secondary and Higher Secondary School done in</h5>
-            <h1>Advait Vidhyaniketan, Bharuch</h1>
+            <h5>Secondary and Higher Secondary School done from</h5>
+            <h1>Advait Vidhyaniketan</h1>
             <h5>Secondary Edu.: June 2016 to March 2018</h5>
             <h5>Higher Sec. Edu.: June 2018 to March 2020</h5>
             <h4>
-              With 70% in 12<sup>th</sup> {"("}Science{")"} and 82.33% in 10
+              With 70% in 12<sup>th</sup> {"("}Science{"("}Mathematics{")"}{")"} and 82.33% in 10
               <sup>th</sup>.
             </h4>
           </motion.div>
