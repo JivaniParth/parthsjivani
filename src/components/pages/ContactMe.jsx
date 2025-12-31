@@ -2,6 +2,9 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import PhoneInput from "react-phone-input-2";
+import { parsePhoneNumber, isValidPhoneNumber } from "libphonenumber-js";
+// import "react-phone-input-2/lib/style.css"; // REMOVED: Using custom dark theme styles instead
 import "../styles/ContactMe.css";
 
 // Initialize EmailJS
@@ -36,6 +39,7 @@ export default function Contactme() {
     subject: "",
     message: "",
   });
+  const [phoneCountry, setPhoneCountry] = useState("us"); // Track selected country for validation
   const [loading, setLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
   const [errors, setErrors] = useState({});
@@ -110,25 +114,72 @@ export default function Contactme() {
 
   const validateField = (name, value) => {
     const trimmed = value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // RFC 5322 compliant email regex (simplified)
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
     switch (name) {
       case "name":
-        return trimmed ? "" : "Name is required.";
-      case "email":
-        return emailRegex.test(trimmed) ? "" : "Enter a valid email address (e.g., name@example.com).";
-      case "contactNo": {
-        const digits = trimmed.replace(/\D/g, "");
-        if (!digits) return "Phone number is required.";
-        if (digits.length < 7 || digits.length > 15) {
-          return "Use 7-15 digits. Include country code if needed.";
-        }
+        if (!trimmed) return "Name is required";
+        if (trimmed.length < 2) return "Name must be at least 2 characters";
+        if (!/^[a-zA-Z\s'-]+$/.test(trimmed)) return "Name can only contain letters, spaces, hyphens, and apostrophes";
         return "";
+      case "email":
+        if (!trimmed) return "Email is required";
+        if (!emailRegex.test(trimmed)) return "Please enter a valid email address";
+        return "";
+      case "contactNo": {
+        // Phone number is optional - only validate if user provides a value
+        if (!value || value.trim() === '') return "";
+        
+        // Add + prefix if not present for validation
+        const phoneWithPlus = value.startsWith('+') ? value : `+${value}`;
+        
+        try {
+          // Validate using libphonenumber-js
+          if (!isValidPhoneNumber(phoneWithPlus)) {
+            // Get country name for error message
+            const countryCode = phoneCountry.toUpperCase();
+            const countryNames = {
+              'US': 'United States',
+              'IN': 'India',
+              'GB': 'United Kingdom',
+              'CA': 'Canada',
+              'AU': 'Australia',
+              'DE': 'Germany',
+              'FR': 'France',
+              'IT': 'Italy',
+              'ES': 'Spain',
+              'JP': 'Japan',
+              'CN': 'China',
+              'BR': 'Brazil',
+              'MX': 'Mexico',
+              'RU': 'Russia',
+            };
+            const countryName = countryNames[countryCode] || countryCode;
+            return `Invalid phone number for ${countryName}`;
+          }
+          
+          // Additional check: ensure number is complete
+          const phoneNumber = parsePhoneNumber(phoneWithPlus);
+          if (!phoneNumber || !phoneNumber.isValid()) {
+            return "Please enter a complete phone number";
+          }
+          
+          return "";
+        } catch (error) {
+          return `Please enter a valid phone number ${error.message || ""}`;
+        }
       }
       case "subject":
-        return trimmed ? "" : "Subject is required.";
+        if (!trimmed) return "Subject is required";
+        if (trimmed.length < 3) return "Subject must be at least 3 characters";
+        if (trimmed.length > 100) return "Subject cannot exceed 100 characters";
+        return "";
       case "message":
-        return trimmed.length >= 10 ? "" : "Message should be at least 10 characters.";
+        if (!trimmed) return "Message is required";
+        if (trimmed.length < 10) return "Message must be at least 10 characters";
+        if (trimmed.length > 1000) return "Message cannot exceed 1000 characters";
+        return "";
       default:
         return "";
     }
@@ -137,6 +188,38 @@ export default function Contactme() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    
+    // Clear error on change for better UX, but only if field was previously validated
+    if (errors[name]) {
+      const error = validateField(name, value);
+      setErrors((prev) => ({ ...prev, [name]: error }));
+    }
+  };
+
+  // Handle name field with character restriction (letters, spaces, hyphens, apostrophes only)
+  const handleNameChange = (e) => {
+    const { value } = e.target;
+    // Only allow letters, spaces, hyphens, and apostrophes
+    const filteredValue = value.replace(/[^a-zA-Z\s'-]/g, "");
+    setFormData((prev) => ({ ...prev, name: filteredValue }));
+    
+    // Clear error on change if field was previously validated
+    if (errors.name) {
+      const error = validateField("name", filteredValue);
+      setErrors((prev) => ({ ...prev, name: error }));
+    }
+  };
+
+  // Handle phone number change from react-phone-input-2
+  const handlePhoneChange = (value, country) => {
+    setFormData((prev) => ({ ...prev, contactNo: value }));
+    setPhoneCountry(country.countryCode); // Track the selected country
+    
+    // Clear error on change if field was previously validated
+    if (errors.contactNo) {
+      const error = validateField("contactNo", value);
+      setErrors((prev) => ({ ...prev, contactNo: error }));
+    }
   };
 
   const handleBlur = (e) => {
@@ -155,7 +238,9 @@ export default function Contactme() {
 
     setErrors(newErrors);
 
-    if (Object.keys(newErrors).length > 0) {
+    // Check if there are actual error messages (not just empty strings)
+    const hasErrors = Object.values(newErrors).some(error => error !== "");
+    if (hasErrors) {
       setSubmitMessage("❌ Please fix the highlighted fields.");
       return;
     }
@@ -222,20 +307,10 @@ export default function Contactme() {
           </motion.div>
           <motion.div className="name">
             <motion.h1 style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }} variants={itemVariants}>
-              Namaste! 🙏
+              Nice to meet you!
             </motion.h1>
             <motion.h2 variants={itemVariants}>
-              I&apos;m{" "}
-              <span
-                style={{
-                  fontSize: "clamp(1.5rem, 4vw, 2.7rem)",
-                  fontFamily: "Poppins",
-                  fontWeight: "600",
-                }}
-              >
-                Parth Jivani
-              </span>
-              .
+              Let&apos;s get in touch.
             </motion.h2>
             <motion.p style={{ fontSize: "clamp(1rem, 2vw, 1.25rem)" }} variants={itemVariants}>
               You can contact me at the places mentioned below.
@@ -381,8 +456,9 @@ export default function Contactme() {
                 className={`form-control ${errors.name ? "has-error" : ""}`}
                 name="name"
                 value={formData.name}
-                onChange={handleChange}
+                onChange={handleNameChange}
                 onBlur={handleBlur}
+                placeholder="John Doe"
                 whileFocus="focus"
                 variants={inputVariants}
               />
@@ -403,6 +479,7 @@ export default function Contactme() {
                 type="email"
                 className={`form-control ${errors.email ? "has-error" : ""}`}
                 name="email"
+                placeholder="john.doe@example.com"
                 value={formData.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -422,17 +499,27 @@ export default function Contactme() {
               <label htmlFor="inputContactNo" className="form-label">
                 Phone Number
               </label>
-              <motion.input
-                type="tel"
-                className={`form-control ${errors.contactNo ? "has-error" : ""}`}
-                name="contactNo"
-                value={formData.contactNo}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="Include country code, e.g., +1 9876543210"
-                whileFocus="focus"
-                variants={inputVariants}
-              />
+              <div className={`phone-input-wrapper ${errors.contactNo ? "has-error" : ""}`}>
+                <PhoneInput
+                  country={'us'}
+                  value={formData.contactNo}
+                  onChange={handlePhoneChange}
+                  onBlur={() => handleBlur({ target: { name: 'contactNo', value: formData.contactNo } })}
+                  containerClass="phone-input-container"
+                  inputClass="phone-input-field"
+                  buttonClass="phone-input-button"
+                  dropdownClass="phone-input-dropdown"
+                  searchClass="phone-input-search"
+                  enableSearch={true}
+                  searchPlaceholder="Search country"
+                  disableSearchIcon={false}
+                  placeholder="Enter phone number"
+                  inputProps={{
+                    name: 'contactNo',
+                    required: false,
+                  }}
+                />
+              </div>
               {errors.contactNo && <p className="error-text">{errors.contactNo}</p>}
             </motion.div>
             <motion.div
@@ -450,6 +537,7 @@ export default function Contactme() {
                 type="text"
                 className={`form-control ${errors.subject ? "has-error" : ""}`}
                 name="subject"
+                placeholder="Enter subject here ..."
                 value={formData.subject}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -470,9 +558,10 @@ export default function Contactme() {
                 Message
               </label>
               <motion.textarea
-                className="form-control"
+                className={`form-control ${errors.message ? "has-error" : ""}`}
                 rows="3"
                 name="message"
+                placeholder="Type your message here ..."
                 value={formData.message}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -508,6 +597,7 @@ export default function Contactme() {
             )}
             <motion.div
               className="col-12"
+              style={{ display: "flex", justifyContent: "center" }}
               variants={buttonVariants}
               initial="hidden"
               whileInView="visible"
@@ -519,7 +609,7 @@ export default function Contactme() {
                 whileHover="hover"
                 whileTap="tap"
                 variants={buttonVariants}
-                disabled={loading}
+                disabled={loading || Object.values(errors).some(error => error !== "")}
               >
                 {loading ? "Sending..." : "Send Message"}
               </motion.button>

@@ -7,9 +7,10 @@
 .footer {
   padding: 2rem 1rem;
   margin: 2rem 0 0 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f5f5f5;
 }
 
 .footer-content {
@@ -25,7 +26,7 @@
 }
 
 .footer-link:hover {
-  color: #007bff;
+  color: #66b2ff;
 }
 
 .footer-text {
@@ -36,16 +37,11 @@
 .footer-author {
   font-family: Poppins, sans-serif;
   font-weight: 600;
-  color: #007bff;
+  color: #66b2ff;
 }
 
 .dark-footer {
-  color: white;
-}
-
-body.dark .footer {
-  background: rgba(255, 255, 255, 0.05);
-  border-top-color: rgba(255, 255, 255, 0.1);
+  color: #f5f5f5;
 }
 
 /* ===== MOBILE STYLES (480px and below) ===== */

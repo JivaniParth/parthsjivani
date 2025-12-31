@@ -22,6 +22,11 @@ export default function Header({ darkMode }) {
     </motion.div>
   );
 
+  NavLink.propTypes = {
+    to: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+  };
+
   return (
     <div className="container">
       <header className={`header ${darkMode ? "dark-header" : ""}`}>
@@ -32,23 +37,19 @@ export default function Header({ darkMode }) {
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <svg
-              width="40"
-              height="40"
-              viewBox="0 0 100 100"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{ display: "block" }}
+            <img
+              src="/logo-psj.svg"
+              alt="Parth Jivani logo"
+              style={{ display: "block", width: "40px", height: "40px" }}
+            />
+            <span
+              className={`logo-text ${darkMode ? "dark-header-logo" : ""}`}
+              style={{
+                marginLeft: "12px",
+                fontSize: "1.4rem",
+                fontWeight: "600",
+              }}
             >
-              <defs>
-                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: "#007bff", stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: "#0056b3", stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
-              <rect x="8" y="8" width="84" height="84" rx="18" fill="url(#logoGradient)" stroke={darkMode ? "#ffffff" : "#007bff"} strokeWidth="2" />
-              <text x="50" y="62" fontFamily="'Poppins', sans-serif" fontSize="45" fontWeight="700" fill="#ffffff" textAnchor="middle">PJ</text>
-            </svg>
-            <span className={`logo-text ${darkMode ? "dark-header-logo" : ""}`} style={{ marginLeft: "12px", fontSize: "1.4rem", fontWeight: "600" }}>
               parthsjivani
             </span>
           </motion.div>
@@ -69,13 +70,13 @@ export default function Header({ darkMode }) {
             <NavLink to="/" label="Home" />
           </li>
           <li className="nav-item">
-            <NavLink to="/education" label="Education" />
+            <NavLink to="/about" label="About" />
           </li>
           <li className="nav-item">
             <NavLink to="/experience" label="Experience" />
           </li>
           <li className="nav-item">
-            <NavLink to="/my-skills" label="My Skills" />
+            <NavLink to="/projects" label="Projects" />
           </li>
           <li className="nav-item">
             <NavLink to="/contact-me" label="Contact Me" />

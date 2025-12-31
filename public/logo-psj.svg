@@ -1,0 +1,43 @@
+<svg width="200" height="200" viewBox="0 0 200 200"
+     xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2EC4FF"/>
+      <stop offset="100%" stop-color="#1B4FFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- PSJ Monogram -->
+  <g fill="none"
+     stroke="url(#blueGrad)"
+     stroke-width="6"
+     stroke-linecap="round"
+     stroke-linejoin="round">
+
+    <!-- P -->
+    <path d="M60 50 V150
+             M60 50 H95
+             Q120 50 120 80
+             Q120 110 95 110
+             H60"/>
+
+    <!-- S (stretched, aligned, slight overlap with P) -->
+    <path d="M90 60
+             H120
+             Q135 60 135 80
+             Q135 100 120 100
+             H100
+             Q85 100 85 120
+             Q85 140 100 140
+             H130"/>
+
+    <!-- minimal circuit nodes -->
+    <circle cx="120" cy="100" r="3" fill="url(#blueGrad)"/>
+    <circle cx="100" cy="140" r="3" fill="url(#blueGrad)"/>
+
+    <!-- J (clear, unobstructed) -->
+    <path d="M150 50
+             V125
+             Q150 150 125 150"/>
+  </g>
+</svg>

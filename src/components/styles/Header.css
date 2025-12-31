@@ -9,14 +9,16 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #0b0c10;
   backdrop-filter: blur(10px);
   padding: 1.5vh 4vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #f5f5f5;
+  overflow-y: overlay;
 }
 
 /* Logo container */
@@ -52,7 +54,7 @@
 
 .nav-link {
   text-decoration: none;
-  color: black;
+  color: #f5f5f5;
   font-weight: 600;
   padding: 0.5vh 1vw;
   border-radius: 4px;
@@ -61,11 +63,11 @@
 }
 
 .nav-link:hover {
-  color: #0a4f99;
+  color: #88c6ff;
 }
 
 .nav-link.active {
-  color: #0a4f99;
+  color: #66b2ff;
   border-bottom: 2px solid currentColor;
 }
 
@@ -103,12 +105,12 @@
 
 /* Dark mode */
 .dark-header {
-  background-color: rgba(18, 18, 18, 0.94);
-  color: white;
+  background-color: #0b0c10;
+  color: #f5f5f5;
 }
 
 .dark-header .nav-link {
-  color: white;
+  color: #f5f5f5;
 }
 
 .dark-header .nav-link.active {
@@ -116,11 +118,11 @@
 }
 
 .dark-header .nav-link:hover {
-  color: #66b2ff;
+  color: #88c6ff;
 }
 
 .dark-header-logo {
-  color: white;
+  color: #f5f5f5;
 }
 
 /* Tablet and below */
@@ -139,14 +141,14 @@
     top: 60px;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
+    background: #0b0c10;
     backdrop-filter: blur(10px);
     flex-direction: column;
     gap: 0;
     padding: 12px 0;
     display: none;
     z-index: 999;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .nav.nav-open {
@@ -157,7 +159,7 @@
     width: 100%;
     justify-content: center;
     padding: 12px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .nav-item:last-child {
@@ -170,7 +172,7 @@
   }
 
   .nav-link.active {
-    color: #007bff;
+    color: #66b2ff;
     border-bottom: none;
   }
 
@@ -186,7 +188,7 @@
 
 /* Dark mode mobile nav */
 .dark-header .nav {
-  background: rgba(18, 18, 18, 0.98);
+  background: #0b0c10;
   border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 

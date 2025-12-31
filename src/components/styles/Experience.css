@@ -2,9 +2,11 @@
   margin-top: 80px;
   padding-top: 2rem;
   width: 100%;
+  color: #f5f5f5;
 }
 
 /* Experience/School Card */
+
 .school {
   display: flex;
   justify-content: space-between;
@@ -14,12 +16,12 @@
   margin: 2rem 0;
   padding: 2rem;
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(255, 255, 255, 0.04);
   transition: all 0.3s ease;
 }
 
 .school:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.08);
   transform: translateY(-5px);
 }
 
@@ -97,11 +99,11 @@
 }
 
 body.dark .school {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 body.dark .school:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* ===== TABLET STYLES (768px and below) ===== */

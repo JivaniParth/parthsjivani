@@ -3,24 +3,73 @@
   box-sizing: border-box;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   width: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background: #0b0c10 !important;
+  color: #f5f5f5;
 }
 
-/* Light Mode (Default) */
+/* CRITICAL: Only html should scroll - prevent ALL other elements from scrolling */
 body {
-  background-color: white;
-  color: black;
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+  overflow-y: visible !important;
 }
 
-/* Dark Mode */
-body.dark {
-  background-color: #121212;
-  color: white;
+#root {
+  overflow: visible !important;
+}
+
+/* Prevent Bootstrap or any library from adding overflow to body/root */
+body,
+#root,
+.container,
+.flex,
+main,
+.content,
+.skills-content,
+.education-content,
+.contact-me-content,
+div[class*="content"] {
+  overflow-y: visible !important;
+  overflow-x: visible !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Nuclear option: prevent ALL divs from creating scroll containers */
+div:not(html) {
+  overflow: visible !important;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* Show browser scrollbar - thin dark style */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #444 transparent;
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: #666;
 }
 
 /* Global Container */
@@ -37,6 +86,8 @@ body.dark {
   margin-top: 80px;
   padding-top: 2rem;
   width: 100%;
+  /* Temporarily removed min-height to test scrollbar issue */
+  /* min-height: calc(100vh - 80px); */
 }
 
 /* Responsive container padding */
@@ -48,6 +99,7 @@ body.dark {
   .content {
     margin-top: 70px;
     padding-top: 1.5rem;
+    /* min-height: calc(100vh - 70px); */
   }
 }
 
@@ -59,65 +111,39 @@ body.dark {
   .content {
     margin-top: 60px;
     padding-top: 1rem;
+    /* min-height: calc(100vh - 60px); */
   }
 }
 
-/* Floating Toggle Button */
-.toggle-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #333;
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 50px;
-  cursor: pointer;
-  font-size: 16px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 9999; /* Keeps it above all components */
-  transition: background 0.3s, transform 0.2s;
-}
-
-.toggle-btn:hover {
-  background: #555;
-  transform: scale(1.1);
-}
-
-body.dark .toggle-btn {
-  background: white;
-  color: black;
-}
-
-body.dark .card {
+.card {
   background-color: #1e1e1e;
   color: white;
   box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
 }
 
-body.dark .card p {
+.card p {
   color: white !important;
 }
 
-body.dark input,
-body.dark textarea {
-  background-color: #1e1e1e; /* Dark gray background */
-  color: white; /* White text */
-  border: 1px solid #444; /* Slightly lighter border */
+input,
+textarea {
+  background-color: #000000;
+  color: white;
+  border: 1px solid #333;
 }
 
 /* Change Placeholder Text Color */
-body.dark input::placeholder,
-body.dark textarea::placeholder {
-  color: #aaa; /* Light gray for better visibility */
+input::placeholder,
+textarea::placeholder {
+  color: #aaa;
 }
 
-body.dark input:focus,
-body.dark textarea:focus {
-  background-color: #1e1e1e; /* Dark gray background */
+input:focus,
+textarea:focus {
+  background-color: #000000;
   color: white !important;
-  border: 1px solid #555; /* Darker border */
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1); /* Softer glow */
+  border: 1px solid #66b2ff;
+  box-shadow: 0 0 8px rgba(102, 178, 255, 0.3);
 }
 
 /* ===== RESPONSIVE TEXT SIZING ===== */
@@ -156,15 +182,6 @@ p {
 }
 
 /* ===== MOBILE OPTIMIZATIONS ===== */
-@media (max-width: 1024px) {
-  .toggle-btn {
-    padding: 10px 16px;
-    font-size: 14px;
-    bottom: 15px;
-    right: 15px;
-  }
-}
-
 @media (max-width: 768px) {
   h1 {
     font-size: clamp(1.5rem, 6vw, 2.5rem);
@@ -180,13 +197,6 @@ p {
 
   .flex {
     gap: 0.75rem;
-  }
-
-  .toggle-btn {
-    padding: 8px 14px;
-    font-size: 12px;
-    bottom: 12px;
-    right: 12px;
   }
 }
 
@@ -210,12 +220,5 @@ p {
   .flex {
     flex-direction: column;
     gap: 0.5rem;
-  }
-
-  .toggle-btn {
-    padding: 8px 12px;
-    font-size: 11px;
-    bottom: 10px;
-    right: 10px;
   }
 }
