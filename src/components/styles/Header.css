@@ -67,8 +67,21 @@
 }
 
 .nav-link.active {
-  color: #66b2ff;
-  border-bottom: 2px solid currentColor;
+  color: #00bcd4;
+  border-bottom: 3px solid #00bcd4;
+  position: relative;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: #00bcd4;
+  border-radius: 50%;
 }
 
 /* Hamburger button */
@@ -114,7 +127,7 @@
 }
 
 .dark-header .nav-link.active {
-  color: #66b2ff;
+  color: #00bcd4;
 }
 
 .dark-header .nav-link:hover {
@@ -172,8 +185,12 @@
   }
 
   .nav-link.active {
-    color: #66b2ff;
+    color: #00bcd4;
     border-bottom: none;
+  }
+  
+  .nav-link.active::after {
+    display: none;
   }
 
   .hamburger {

@@ -14,15 +14,22 @@ export default function App() {
     document.documentElement.classList.add("dark");
   }, []);
 
-  // Force scroll-to-top on route change before paint
+  // Force scroll-to-top on route change after paint to avoid interfering with Framer Motion
   useLayoutEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
-    // Reset all potential scroll containers just in case
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+  }, []);
+  
+  useLayoutEffect(() => {
+    // Use requestAnimationFrame to ensure scroll happens after Framer Motion initializes
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+    
+    requestAnimationFrame(scrollToTop);
   }, [location.pathname]);
 
   return (
