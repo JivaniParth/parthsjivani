@@ -141,8 +141,15 @@
 /* Tablet and below */
 @media (max-width: 768px) {
   .header {
-    padding: 1.5vh 3vw;
+    padding: 1.2rem 3vw;
     flex-wrap: nowrap;
+    min-height: 70px;
+    transition: min-height 0.3s ease;
+  }
+
+  .header.menu-open {
+    min-height: 100vh;
+    align-items: flex-start;
   }
 
   .logo-text {
@@ -150,12 +157,12 @@
   }
 
   .nav {
-    position: fixed;
-    top: 60px;
+    position: absolute;
+    top: 70px;
     left: 0;
     right: 0;
-    background: #0b0c10;
-    backdrop-filter: blur(10px);
+    background: transparent;
+    backdrop-filter: none;
     flex-direction: column;
     justify-content: flex-start;
     gap: 0;
@@ -163,8 +170,8 @@
     display: none;
     z-index: 999;
     border-top: 2px solid rgba(0, 188, 212, 0.3);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    max-height: calc(100vh - 60px);
+    box-shadow: none;
+    max-height: calc(100vh - 70px);
     overflow-y: auto;
   }
 
@@ -236,7 +243,14 @@
 
 @media (max-width: 480px) {
   .header {
-    padding: 1rem 2vw;
+    padding: 1.2rem 2vw;
+    min-height: 70px;
+    transition: min-height 0.3s ease;
+  }
+
+  .header.menu-open {
+    min-height: 100vh;
+    align-items: flex-start;
   }
 
   svg {

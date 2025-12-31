@@ -43,7 +43,7 @@ export default function Header({ darkMode }) {
 
   return (
     <div className="container">
-      <header className={`header ${darkMode ? "dark-header" : ""}`}>
+      <header className={`header ${darkMode ? "dark-header" : ""} ${menuOpen ? "menu-open" : ""}`}>
         <Link to="/" style={{ textDecoration: "none" }} aria-label="Parth Jivani - Home">
           <motion.div
             className="logo-container"
