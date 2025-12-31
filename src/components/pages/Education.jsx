@@ -19,7 +19,7 @@ export default function Education() {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.h2 className="section-title" variants={itemVariants}>
             Education
@@ -43,7 +43,7 @@ export default function Education() {
           variants={itemVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.div
             className="photo degree-photo-1"
@@ -55,7 +55,7 @@ export default function Education() {
             whileInView={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <img src="/new-nuv.png" alt="NUV" />
           </motion.div>
@@ -67,8 +67,8 @@ export default function Education() {
             }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <h5>Pursuing Master&apos;s Degree from</h5>
             <h1>Navrachana University</h1>
@@ -99,7 +99,7 @@ export default function Education() {
           variants={itemVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.div
             className="degreedetails"
@@ -109,8 +109,8 @@ export default function Education() {
             }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <h5>Bachelor&apos;s Degree done from</h5>
             <h1>Shantilal Shah Engineering College</h1>
@@ -135,7 +135,7 @@ export default function Education() {
             whileInView={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <img src="/college.png" alt="SSEC" />
           </motion.div>
@@ -155,7 +155,7 @@ export default function Education() {
           variants={itemVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.div
             className="photo degree-photo-3"
@@ -167,8 +167,8 @@ export default function Education() {
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <img
               src="/logo-Advait-768x197.png"
@@ -185,7 +185,7 @@ export default function Education() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <h5>Secondary and Higher Secondary School done from</h5>
             <h1>Advait Vidhyaniketan</h1>
