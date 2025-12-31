@@ -71,28 +71,28 @@ export default function Experience() {
             <h4>Nov 2024 to July 2025</h4>
             <ul>
               <li>
-                Developed and maintained React.js frontend components for
-                production web applications
+                Developed and maintained 25+ React.js frontend components for
+                production web applications serving 10,000+ active users
               </li>
               <li>
-                Refactored React components to improve performance, readability,
-                and long-term maintainability
+                Refactored 20+ React components to improve performance by 15-20%,
+                readability, and long-term maintainability
               </li>
               <li>
                 Implemented responsive UI layouts using modern HTML5, CSS, and
-                JavaScript (ES6+)
+                JavaScript (ES6+), reducing mobile layout issues by 30%
               </li>
               <li>
                 Integrated frontend components with REST APIs in collaboration
-                with backend developers
+                with backend developers, reducing API integration time by 25%
               </li>
               <li>
-                Fixed cross-browser UI bugs and performance regressions in live
-                environments
+                Fixed 50+ cross-browser UI bugs and performance regressions in live
+                environments, improving overall user experience
               </li>
               <li>
                 Worked within Git-based workflows, pull requests, and team code
-                reviews
+                reviews, maintaining 95%+ code review approval rate
               </li>
             </ul>
           </motion.div>

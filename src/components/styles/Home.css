@@ -82,6 +82,37 @@
   transform: translateY(-2px);
 }
 
+/* CTA Buttons Container */
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.btn-primary-cta {
+  background-color: #00bcd4;
+  color: white;
+  border: 2px solid #00bcd4;
+}
+
+.btn-primary-cta:hover {
+  background-color: #00a8c4;
+  border-color: #00a8c4;
+}
+
+.btn-secondary-cta {
+  background-color: transparent;
+  color: #00bcd4;
+  border: 2px solid #00bcd4;
+}
+
+.btn-secondary-cta:hover {
+  background-color: rgba(0, 188, 212, 0.1);
+  border-color: #00bcd4;
+  color: #00bcd4;
+}
+
 /* Card Title Section */
 .cardTitle {
   text-align: center;
@@ -187,7 +218,9 @@
   }
 
   .photo svg {
-    display: none;
+    max-width: 180px;
+    transform: scale(0.7);
+    opacity: 0.6;
   }
 
   .photo img {

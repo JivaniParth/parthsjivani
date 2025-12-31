@@ -9,6 +9,10 @@ export default function Home() {
     navigate("/contact-me");
   };
 
+  const handleViewWorkClick = () => {
+    navigate("/projects");
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -111,22 +115,40 @@ export default function Home() {
               <b>Web Developer</b>, always learning new technologies.
             </motion.h4>
             <div className="contact"></div>
-            <motion.button
-              type="button"
-              onClick={handleSubmitButtonClick}
-              className="btn btn-info"
-              style={{ 
-                padding: "clamp(10px, 2vw, 15px) clamp(15px, 4vw, 30px)",
-                margin: "clamp(0.75rem, 2vw, 1.5rem) clamp(0.5rem, 2vw, 1rem)",
-                fontWeight: "600",
-                fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
-              }}
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-            >
-              Contact Me
-            </motion.button>
+            <div className="cta-buttons">
+              <motion.button
+                type="button"
+                onClick={handleSubmitButtonClick}
+                className="btn btn-info btn-primary-cta"
+                style={{ 
+                  padding: "clamp(10px, 2vw, 15px) clamp(15px, 4vw, 30px)",
+                  margin: "clamp(0.75rem, 2vw, 1.5rem) clamp(0.5rem, 2vw, 1rem)",
+                  fontWeight: "600",
+                  fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
+                }}
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                Contact Me
+              </motion.button>
+              <motion.button
+                type="button"
+                onClick={handleViewWorkClick}
+                className="btn btn-outline-info btn-secondary-cta"
+                style={{ 
+                  padding: "clamp(10px, 2vw, 15px) clamp(15px, 4vw, 30px)",
+                  margin: "clamp(0.75rem, 2vw, 1.5rem) clamp(0.5rem, 2vw, 1rem)",
+                  fontWeight: "600",
+                  fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
+                }}
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                View My Work
+              </motion.button>
+            </div>
           </motion.div>
         </motion.div>
       </div>

@@ -24,7 +24,7 @@ export default function App() {
   useLayoutEffect(() => {
     // Use requestAnimationFrame to ensure scroll happens after Framer Motion initializes
     const scrollToTop = () => {
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
     };

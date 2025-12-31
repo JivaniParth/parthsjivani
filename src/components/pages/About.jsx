@@ -17,98 +17,113 @@ const ExpressIcon = () => {
 };
 
 export default function About() {
-  // Skills data
-  const skills = [
+  // Skills data organized by categories
+  const skillCategories = [
     {
-      name: "HTML5",
-      icon: "fab fa-html5",
-      color: "#E44D26",
-      description: "Semantic markup, forms, multimedia elements",
+      title: "Frontend Development",
+      skills: [
+        {
+          name: "React",
+          icon: "fab fa-react",
+          color: "#61DAFB",
+          description: "Components, hooks, state management",
+        },
+        {
+          name: "HTML5",
+          icon: "fab fa-html5",
+          color: "#E44D26",
+          description: "Semantic markup, forms, multimedia elements",
+        },
+        {
+          name: "CSS3",
+          icon: "fab fa-css3-alt",
+          color: "#264DE4",
+          description: "Styling, animations, responsive design",
+        },
+        {
+          name: "Bootstrap",
+          icon: "fab fa-bootstrap",
+          color: "#7952B3",
+          description: "Responsive layouts, components, utilities",
+        },
+        {
+          name: "JavaScript",
+          icon: "fab fa-js",
+          color: "#F7DF1E",
+          description: "ES6+, DOM manipulation, async programming",
+        },
+        {
+          name: "Responsive Design",
+          icon: "fas fa-mobile-alt",
+          color: "#38B2AC",
+          description: "Mobile-first approach, media queries",
+        },
+      ],
     },
     {
-      name: "CSS3",
-      icon: "fab fa-css3-alt",
-      color: "#264DE4",
-      description: "Styling, animations, responsive design",
+      title: "Backend & Databases",
+      skills: [
+        {
+          name: "Node.js",
+          icon: "fab fa-node-js",
+          color: "#339933",
+          description: "JavaScript runtime, event-driven, non-blocking I/O",
+        },
+        {
+          name: "Express",
+          icon: null,
+          color: "#000000",
+          description: "Minimalist web framework for Node.js, routing, middleware",
+          customIcon: ExpressIcon,
+        },
+        {
+          name: "SQL",
+          icon: "fas fa-database",
+          color: "#4479A1",
+          description: "Queries, database design, data manipulation",
+        },
+      ],
     },
     {
-      name: "JavaScript",
-      icon: "fab fa-js",
-      color: "#F7DF1E",
-      description: "ES6+, DOM manipulation, async programming",
-    },
-    {
-      name: "Bootstrap",
-      icon: "fab fa-bootstrap",
-      color: "#7952B3",
-      description: "Responsive layouts, components, utilities",
-    },
-    {
-      name: "React",
-      icon: "fab fa-react",
-      color: "#61DAFB",
-      description: "Components, hooks, state management",
-    },
-    {
-      name: "Node.js",
-      icon: "fab fa-node-js",
-      color: "#339933",
-      description: "JavaScript runtime, event-driven, non-blocking I/O",
-    },
-    {
-      name: "Express",
-      icon: null,
-      color: "#000000",
-      description: "Minimalist web framework for Node.js, routing, middleware",
-      customIcon: ExpressIcon,
-    },
-    {
-      name: "SQL",
-      icon: "fas fa-database",
-      color: "#4479A1",
-      description: "Queries, database design, data manipulation",
-    },
-    {
-      name: "Responsive Design",
-      icon: "fas fa-mobile-alt",
-      color: "#38B2AC",
-      description: "Mobile-first approach, media queries",
-    },
-    {
-      name: "Microsoft Word",
-      icon: "fas fa-file-word",
-      color: "#2b579a",
-      description: "Document creation, formatting, collaboration",
-    },
-    {
-      name: "Microsoft Excel",
-      icon: "fas fa-file-excel",
-      color: "#217346",
-      description: "Data analysis, formulas, pivot tables",
-    },
-    {
-      name: "Microsoft PowerPoint",
-      icon: "fas fa-file-powerpoint",
-      color: "#d24726",
-      description: "Presentations, slides, visual storytelling",
-    },
-    {
-      name: "Problem Solving",
-      icon: "fas fa-lightbulb",
-      color: "#FFA500",
-      description: "Analytical thinking, debugging, creative solutions",
-    },
-    {
-      name: "Agile Methodology",
-      icon: "fas fa-sync-alt",
-      color: "#00CED1",
-      description: "Sprint planning, daily standups, iterative development",
-    },
-    {
-      name: "Collaboration",
-      icon: "fas fa-users",
-      color: "#9370DB",
-      description: "Team communication, code reviews, pair programming",
+      title: "Tools & Soft Skills",
+      skills: [
+        {
+          name: "Microsoft Word",
+          icon: "fas fa-file-word",
+          color: "#2b579a",
+          description: "Document creation, formatting, collaboration",
+        },
+        {
+          name: "Microsoft Excel",
+          icon: "fas fa-file-excel",
+          color: "#217346",
+          description: "Data analysis, formulas, pivot tables",
+        },
+        {
+          name: "Microsoft PowerPoint",
+          icon: "fas fa-file-powerpoint",
+          color: "#d24726",
+          description: "Presentations, slides, visual storytelling",
+        },
+        {
+          name: "Problem Solving",
+          icon: "fas fa-lightbulb",
+          color: "#FFA500",
+          description: "Analytical thinking, debugging, creative solutions",
+        },
+        {
+          name: "Agile Methodology",
+          icon: "fas fa-sync-alt",
+          color: "#00CED1",
+          description: "Sprint planning, daily standups, iterative development",
+        },
+        {
+          name: "Collaboration",
+          icon: "fas fa-users",
+          color: "#9370DB",
+          description: "Team communication, code reviews, pair programming",
+        },
+      ],
     },
   ];
 
@@ -175,44 +190,58 @@ export default function About() {
             </motion.p>
           </motion.div>
 
-          <motion.div
-            className="row"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            {skills.map((skill, index) => (
-              <div className="col-md-3 col-sm-6 mb-4" key={index}>
-                <motion.div
-                  custom={index}
-                  variants={cardVariants}
-                  whileHover="hover"
-                  className="card h-100 border-0 shadow-sm text-center p-4 hover-card"
-                  style={{
-                    cursor: "pointer",
-                  }}
-                >
-                  <div className="card-body">
-                    {skill.customIcon ? (
-                      <div style={{ marginBottom: "12px" }}>
-                        <skill.customIcon />
+          {/* Render skills by category */}
+          {skillCategories.map((category, categoryIndex) => (
+            <div key={categoryIndex} className="mb-5">
+              <motion.h3
+                className="text-center mb-4 skill-category-title"
+                initial={{ opacity: 0, y: -10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                {category.title}
+              </motion.h3>
+              <motion.div
+                className="row"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                {category.skills.map((skill, index) => (
+                  <div className="col-md-3 col-sm-6 mb-4" key={index}>
+                    <motion.div
+                      custom={index}
+                      variants={cardVariants}
+                      whileHover="hover"
+                      className="card h-100 border-0 shadow-sm text-center p-4 hover-card"
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    >
+                      <div className="card-body">
+                        {skill.customIcon ? (
+                          <div style={{ marginBottom: "12px" }}>
+                            <skill.customIcon />
+                          </div>
+                        ) : (
+                          <i
+                            className={`${skill.icon} fa-3x mb-3`}
+                            style={{ color: skill.color }}
+                          ></i>
+                        )}
+                        <motion.h5 className="card-title">{skill.name}</motion.h5>
+                        <motion.p className="card-text small text-muted">
+                          {skill.description}
+                        </motion.p>
                       </div>
-                    ) : (
-                      <i
-                        className={`${skill.icon} fa-3x mb-3`}
-                        style={{ color: skill.color }}
-                      ></i>
-                    )}
-                    <motion.h5 className="card-title">{skill.name}</motion.h5>
-                    <motion.p className="card-text small text-muted">
-                      {skill.description}
-                    </motion.p>
+                    </motion.div>
                   </div>
-                </motion.div>
-              </div>
-            ))}
-          </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          ))}
         </div>
       </div>
 

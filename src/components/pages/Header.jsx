@@ -30,12 +30,12 @@ export default function Header({ darkMode }) {
   return (
     <div className="container">
       <header className={`header ${darkMode ? "dark-header" : ""}`}>
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/" style={{ textDecoration: "none" }} aria-label="Parth Jivani - Home">
           <motion.div
             className="logo-container"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            transition={{ type: "spring", stiffness: 500, damping: 15 }}
           >
             <img
               src="/logo-psj.svg"

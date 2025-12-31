@@ -127,6 +127,27 @@ body.dark .skillCategory li {
   font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
 
+/* Skill Category Titles */
+.skill-category-title {
+  color: #00bcd4;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 600;
+  margin: 2rem 0 1.5rem 0;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.skill-category-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00bcd4, transparent);
+}
+
 /* ===== EDUCATION SECTION ===== */
 .education-section {
   padding-top: 8rem;
