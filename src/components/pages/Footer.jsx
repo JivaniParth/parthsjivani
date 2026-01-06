@@ -20,16 +20,6 @@ export default function Footer({ darkMode }) {
           >
             Made by <span className="footer-author">Parth Jivani</span>
           </motion.span>
-        </div>
-      </motion.footer>
-      <motion.footer
-        className={`footer ${darkMode ? "dark-footer" : ""}`}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <div className="footer-content">
           <motion.span
             className={`footer-text ${darkMode ? "dark-footer" : ""}`}
             whileHover={{ color: "#007bff" }}
