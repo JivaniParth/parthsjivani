@@ -19,7 +19,7 @@ export default function Footer({ darkMode }) {
             transition={{ duration: 0.3 }}
           >
             Made by <span className="footer-author">Parth Jivani</span>
-          </motion.span>
+          </motion.span> <br />
           <motion.span
             className={`footer-text ${darkMode ? "dark-footer" : ""}`}
             whileHover={{ color: "#007bff" }}
