@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import PhoneInput from "react-phone-input-2";
-import { parsePhoneNumber, isValidPhoneNumber } from "libphonenumber-js";
-// import "react-phone-input-2/lib/style.css"; // REMOVED: Using custom dark theme styles instead
+import { parsePhoneNumberWithError, isValidPhoneNumber } from "libphonenumber-js";
 import "../styles/ContactMe.css";
 
 // Initialize EmailJS
@@ -39,7 +38,7 @@ export default function Contactme() {
     subject: "",
     message: "",
   });
-  const [phoneCountry, setPhoneCountry] = useState("us"); // Track selected country for validation
+  const [phoneCountry, setPhoneCountry] = useState("us");
   const [loading, setLoading] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
   const [errors, setErrors] = useState({});
@@ -130,10 +129,10 @@ export default function Contactme() {
       case "contactNo": {
         // Phone number is optional - only validate if user provides a value
         if (!value || value.trim() === '') return "";
-        
+
         // Add + prefix if not present for validation
         const phoneWithPlus = value.startsWith('+') ? value : `+${value}`;
-        
+
         try {
           // Validate using libphonenumber-js
           if (!isValidPhoneNumber(phoneWithPlus)) {
@@ -158,13 +157,13 @@ export default function Contactme() {
             const countryName = countryNames[countryCode] || countryCode;
             return `Invalid phone number for ${countryName}`;
           }
-          
+
           // Additional check: ensure number is complete
-          const phoneNumber = parsePhoneNumber(phoneWithPlus);
+          const phoneNumber = parsePhoneNumberWithError(phoneWithPlus);
           if (!phoneNumber || !phoneNumber.isValid()) {
             return "Please enter a complete phone number";
           }
-          
+
           return "";
         } catch (error) {
           return `Please enter a valid phone number ${error.message || ""}`;
@@ -188,7 +187,7 @@ export default function Contactme() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    
+
     // Clear error on change for better UX, but only if field was previously validated
     if (errors[name]) {
       const error = validateField(name, value);
@@ -202,7 +201,7 @@ export default function Contactme() {
     // Only allow letters, spaces, hyphens, and apostrophes
     const filteredValue = value.replace(/[^a-zA-Z\s'-]/g, "");
     setFormData((prev) => ({ ...prev, name: filteredValue }));
-    
+
     // Clear error on change if field was previously validated
     if (errors.name) {
       const error = validateField("name", filteredValue);
@@ -214,7 +213,7 @@ export default function Contactme() {
   const handlePhoneChange = (value, country) => {
     setFormData((prev) => ({ ...prev, contactNo: value }));
     setPhoneCountry(country.countryCode); // Track the selected country
-    
+
     // Clear error on change if field was previously validated
     if (errors.contactNo) {
       const error = validateField("contactNo", value);
@@ -241,7 +240,7 @@ export default function Contactme() {
     // Check if there are actual error messages (not just empty strings)
     const hasErrors = Object.values(newErrors).some(error => error !== "");
     if (hasErrors) {
-      setSubmitMessage("❌ Please fix the highlighted fields.");
+      setSubmitMessage("Please fix the highlighted fields.");
       return;
     }
 
@@ -274,7 +273,7 @@ export default function Contactme() {
       }
     } catch (error) {
       console.error("Error sending email:", error);
-      setSubmitMessage("❌ Failed to send message. Please try again.");
+      setSubmitMessage("Failed to send message. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -411,11 +410,11 @@ export default function Contactme() {
               style={{ display: "flex", justifyContent: "center" }}
               variants={itemVariants}
             >
-              <SocialIcon url="../parth-jivani-resume.pdf">
+              <SocialIcon url="https://drive.google.com/file/d/1Z3ByYvIAjOlXqSclHIUOkzlQ0wB7swXT/view">
                 <motion.button
                   type="button"
                   className="btn btn-info resumeButton"
-                  style={{ 
+                  style={{
                     padding: "clamp(10px, 2vw, 15px) clamp(15px, 4vw, 30px)",
                     margin: "clamp(0.5rem, 2vw, 1.5rem) clamp(0.5rem, 2vw, 1rem)",
                     fontWeight: "600",
@@ -586,9 +585,8 @@ export default function Contactme() {
                       ? "#d4edda"
                       : "#f8d7da",
                     color: submitMessage.includes("✅") ? "#155724" : "#721c24",
-                    border: `1px solid ${
-                      submitMessage.includes("✅") ? "#c3e6cb" : "#f5c6cb"
-                    }`,
+                    border: `1px solid ${submitMessage.includes("✅") ? "#c3e6cb" : "#f5c6cb"
+                      }`,
                   }}
                 >
                   {submitMessage}

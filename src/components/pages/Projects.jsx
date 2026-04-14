@@ -88,9 +88,8 @@ const ProjectCard = ({ project, isFeatured, index }) => {
             onMouseLeave={() => setShowTooltip(false)}
           >
             <button
-              className={`project-btn demo-btn ${
-                !project.isDeployed ? "disabled" : ""
-              }`}
+              className={`project-btn demo-btn ${!project.isDeployed ? "disabled" : ""
+                }`}
               disabled={!project.isDeployed}
               onClick={() => {
                 if (project.isDeployed && project.liveDemoLink) {
@@ -164,7 +163,7 @@ export default function Projects() {
       caseStudyLink:
         "https://github.com/JivaniParth/BookHaven-System-Design-Study",
       liveDemoLink: null,
-      isFeatured: true,
+      isFeatured: false,
       isDeployed: false,
     },
     {
@@ -185,6 +184,25 @@ export default function Projects() {
       liveDemoLink: null,
       isFeatured: false,
       isDeployed: false,
+    },
+    {
+      id: 3,
+      title: "Aradhya Gems",
+      description:
+        "Online Jewellery Store for a client. This project is built using MERN stack. This project includes JWT authentication, role-based access control, inventory management, order management, and payment gateway integration. This project is compact and can be used as a template for other e-commerce applications. This projects includes some minor features like wishlist, cart, order tracking, etc. which makes it a good example of a complete e-commerce application.",
+      techStack: [
+        "React",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JWT Authentication",
+        "Tailwind CSS",
+      ],
+      githubRepo: "https://github.com/JivaniParth/aradhya-gems",
+      caseStudyLink: null,
+      liveDemoLink: "https://aradhyagems.in/",
+      isFeatured: true,
+      isDeployed: true,
     },
   ];
 

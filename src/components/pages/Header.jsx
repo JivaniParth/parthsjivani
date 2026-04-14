@@ -90,7 +90,7 @@ export default function Header({ darkMode }) {
             <NavLink to="/experience" label="Experience" />
           </li>
           <li className="nav-item">
-            <NavLink to="/projects" label="Projects" />
+            <NavLink to="/projects" label="Projects & Research" />
           </li>
           <li className="nav-item">
             <NavLink to="/contact-me" label="Contact Me" />
