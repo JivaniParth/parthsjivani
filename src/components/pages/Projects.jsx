@@ -159,7 +159,7 @@ export default function Projects() {
         "REST APIs",
         "Tailwind CSS",
       ],
-      githubRepo: "https://github.com/JivaniParth/online-book-store-mongodb",
+      githubRepo: "https://github.com/JivaniParth/online-book-store",
       caseStudyLink:
         "https://github.com/JivaniParth/BookHaven-System-Design-Study",
       liveDemoLink: null,
@@ -172,14 +172,14 @@ export default function Projects() {
       description:
         "Parallel backend implementations comparing Flask + MySQL against Node.js + MongoDB for the same application, exploring schema design tradeoffs and developer experience.",
       techStack: [
-        "React",
+        "React.js",
         "Python",
         "Flask",
         "MySQL",
         "JWT Authentication",
         "Tailwind CSS",
       ],
-      githubRepo: "https://github.com/JivaniParth/online-book-store",
+      githubRepo: "https://github.com/JivaniParth/online-book-store-mongodb",
       caseStudyLink: null,
       liveDemoLink: null,
       isFeatured: false,
@@ -189,9 +189,9 @@ export default function Projects() {
       id: 3,
       title: "Aradhya Gems",
       description:
-        "Online Jewellery Store for a client. This project is built using MERN stack. This project includes JWT authentication, role-based access control, inventory management, order management, and payment gateway integration. This project is compact and can be used as a template for other e-commerce applications. This projects includes some minor features like wishlist, cart, order tracking, etc. which makes it a good example of a complete e-commerce application.",
+        "Online Jewellery Store for a client. This project is built using MERN stack. This project includes JWT authentication, role-based access control, inventory management, order management, and payment gateway integration. This project is compact and can be used as a template for other e-commerce applications. This project includes some minor features like wishlist, cart, order tracking, etc. which makes it a good example of a complete e-commerce application.",
       techStack: [
-        "React",
+        "React.js",
         "Node.js",
         "Express.js",
         "MongoDB",
@@ -203,6 +203,22 @@ export default function Projects() {
       liveDemoLink: "https://aradhyagems.in/",
       isFeatured: true,
       isDeployed: true,
+    },
+    {
+      id: 4,
+      title: "Madhay Construction",
+      description:
+        "Engineered a high-performance, responsive landing page using React.js. Focused on SEO optimization and mobile-first design principles to improve user retention. This project demonstrates best practices in React development, including component-based architecture and efficient state management.",
+      techStack: [
+        "React.js",
+        "Tailwind CSS",
+        "SEO Optimization",
+      ],
+      githubRepo: "https://github.com/JivaniParth/madhay-construction",
+      caseStudyLink: null,
+      liveDemoLink: false,
+      isFeatured: false,
+      isDeployed: false,
     },
   ];
 
