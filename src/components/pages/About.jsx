@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import "../styles/About.css";
 
 // ExpressIcon component
-const ExpressIcon = () => {
+export const ExpressIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,6 +16,74 @@ const ExpressIcon = () => {
   );
 };
 
+export const TailwindIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      width="64"
+      height="64"
+      style={{ display: "block", margin: "0 auto" }}
+    >
+      <path
+        fill="#38BDF8"
+        d="M24 12c-6.4 0-10.4 3.2-12 9.6 2.4-3.2 5.2-4.4 8.4-3.6 1.8.4 3 1.6 4.4 3.2 2.2 2.4 4.8 5.2 11.2 5.2 6.4 0 10.4-3.2 12-9.6-2.4 3.2-5.2 4.4-8.4 3.6-1.8-.4-3-1.6-4.4-3.2C33 14.8 30.4 12 24 12zm-12 14.4C5.6 26.4 1.6 29.6 0 36c2.4-3.2 5.2-4.4 8.4-3.6 1.8.4 3 1.6 4.4 3.2 2.2 2.4 4.8 5.2 11.2 5.2 6.4 0 10.4-3.2 12-9.6-2.4 3.2-5.2 4.4-8.4 3.6-1.8-.4-3-1.6-4.4-3.2-2.2-2.4-4.8-5.2-11.2-5.2z"
+      />
+    </svg>
+  );
+};
+
+export const ReduxIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      width="64"
+      height="64"
+      style={{ display: "block", margin: "0 auto" }}
+    >
+      <path
+        fill="#764ABC"
+        d="M21.6 21.8c.7 0 1.3.6 1.3 1.3s-.6 1.3-1.3 1.3-1.3-.6-1.3-1.3.6-1.3 1.3-1.3zm-11.2 0c.7 0 1.3.6 1.3 1.3s-.6 1.3-1.3 1.3S9 23.8 9 23.1s.6-1.3 1.4-1.3zm5.6-11.6c4.5 0 8.2 2.2 8.2 5s-3.7 5-8.2 5-8.2-2.2-8.2-5 3.7-5 8.2-5zm0 1.5c-3.5 0-6.4 1.5-6.4 3.5s2.9 3.5 6.4 3.5 6.4-1.5 6.4-3.5-2.9-3.5-6.4-3.5z"
+      />
+    </svg>
+  );
+};
+
+export const VercelIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 76 65"
+      width="64"
+      height="64"
+      style={{ display: "block", margin: "0 auto" }}
+    >
+      <path
+        fill="#ffffff"
+        d="M37.59 0L75.18 65H0L37.59 0z"
+      />
+    </svg>
+  );
+};
+
+export const RenderIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      width="64"
+      height="64"
+      style={{ display: "block", margin: "0 auto" }}
+    >
+      <path
+        fill="#46E3B7"
+        d="M10 8h12c8 0 14 6 14 14s-6 14-14 14H10V8zm8 8v16h4c4.4 0 8-3.6 8-8s-3.6-8-8-8h-4z"
+      />
+    </svg>
+  );
+};
+
 export default function About() {
   // Skills data organized by categories
   const skillCategories = [
@@ -23,43 +91,52 @@ export default function About() {
       title: "Frontend Development",
       skills: [
         {
-          name: "React",
+          name: "React.js",
           icon: "fab fa-react",
           color: "#61DAFB",
-          description: "Components, hooks, state management",
-        },
-        {
-          name: "HTML5",
-          icon: "fab fa-html5",
-          color: "#E44D26",
-          description: "Semantic markup, forms, multimedia elements",
-        },
-        {
-          name: "CSS3",
-          icon: "fab fa-css3-alt",
-          color: "#264DE4",
-          description: "Styling, animations, responsive design",
-        },
-        {
-          name: "Bootstrap",
-          icon: "fab fa-bootstrap",
-          color: "#7952B3",
-          description: "Responsive layouts, components, utilities",
+          description:
+            "Component-based architecture, hooks, reusable UI systems, state management",
         },
         {
           name: "JavaScript",
           icon: "fab fa-js",
           color: "#F7DF1E",
-          description: "ES6+, DOM manipulation, async programming",
+          description:
+            "ES6+, asynchronous programming, API integration, DOM manipulation",
         },
         {
-          name: "Responsive Design",
-          icon: "fas fa-mobile-alt",
-          color: "#38B2AC",
-          description: "Mobile-first approach, media queries",
+          name: "HTML5",
+          icon: "fab fa-html5",
+          color: "#E44D26",
+          description:
+            "Semantic structure, accessibility-focused frontend development",
+        },
+        {
+          name: "CSS3",
+          icon: "fab fa-css3-alt",
+          color: "#264DE4",
+          description:
+            "Responsive layouts, animations, modern UI styling techniques",
+        },
+        {
+          name: "Tailwind CSS",
+          icon: null,
+          color: "#38BDF8",
+          description:
+            "Utility-first styling, responsive UI development, scalable design systems",
+          customIcon: TailwindIcon,
+        },
+        {
+          name: "Redux",
+          icon: null,
+          color: "#764ABC",
+          description:
+            "Centralized state management for scalable React applications",
+          customIcon: ReduxIcon,
         },
       ],
     },
+
     {
       title: "Backend & Databases",
       skills: [
@@ -67,61 +144,78 @@ export default function About() {
           name: "Node.js",
           icon: "fab fa-node-js",
           color: "#339933",
-          description: "JavaScript runtime, event-driven, non-blocking I/O",
+          description: "Backend development, REST APIs, server-side JavaScript",
         },
         {
-          name: "Express",
+          name: "Express.js",
           icon: null,
           color: "#000000",
-          description: "Minimalist web framework for Node.js, routing, middleware",
+          description:
+            "REST API routing, middleware handling, backend architecture",
           customIcon: ExpressIcon,
         },
         {
-          name: "SQL",
+          name: "MongoDB",
           icon: "fas fa-database",
-          color: "#4479A1",
-          description: "Queries, database design, data manipulation",
+          color: "#47A248",
+          description:
+            "NoSQL database modeling, CRUD operations, MongoDB Atlas integration",
+        },
+        {
+          name: "JWT Authentication",
+          icon: "fas fa-user-shield",
+          color: "#FF6B35",
+          description:
+            "Authentication workflows, protected routes, role-based access control",
         },
       ],
     },
+
     {
-      title: "Tools & Soft Skills",
+      title: "Deployment & Tools",
       skills: [
         {
-          name: "Microsoft Word",
-          icon: "fas fa-file-word",
-          color: "#2b579a",
-          description: "Document creation, formatting, collaboration",
+          name: "Git & GitHub",
+          icon: "fab fa-github",
+          color: "#ffffff",
+          description:
+            "Version control, collaborative workflows, repository management",
         },
         {
-          name: "Microsoft Excel",
-          icon: "fas fa-file-excel",
-          color: "#217346",
-          description: "Data analysis, formulas, pivot tables",
+          name: "Vercel",
+          icon: null,
+          color: "#ffffff",
+          description:
+            "Frontend deployment and production hosting for React applications",
+          customIcon: VercelIcon,
         },
         {
-          name: "Microsoft PowerPoint",
-          icon: "fas fa-file-powerpoint",
-          color: "#d24726",
-          description: "Presentations, slides, visual storytelling",
+          name: "Render",
+          icon: null,
+          color: "#46E3B7",
+          description: "Backend deployment and cloud-hosted API services",
+          customIcon: RenderIcon,
         },
         {
-          name: "Problem Solving",
-          icon: "fas fa-lightbulb",
-          color: "#FFA500",
-          description: "Analytical thinking, debugging, creative solutions",
+          name: "Responsive Design",
+          icon: "fas fa-mobile-alt",
+          color: "#38B2AC",
+          description:
+            "Mobile-first development and cross-device compatibility",
         },
         {
-          name: "Agile Methodology",
+          name: "REST APIs",
+          icon: "fas fa-network-wired",
+          color: "#00BFFF",
+          description:
+            "API integration, backend communication, scalable data handling",
+        },
+        {
+          name: "Agile Development",
           icon: "fas fa-sync-alt",
           color: "#00CED1",
-          description: "Sprint planning, daily standups, iterative development",
-        },
-        {
-          name: "Collaboration",
-          icon: "fas fa-users",
-          color: "#9370DB",
-          description: "Team communication, code reviews, pair programming",
+          description:
+            "Iterative workflows, collaboration, sprint-based development",
         },
       ],
     },
@@ -191,8 +285,8 @@ export default function About() {
           </motion.div>
 
           {/* Render skills by category */}
-          {skillCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="mb-5">
+          {skillCategories.map((category) => (
+            <div key={category.title} className="mb-5">
               <motion.h3
                 className="text-center mb-4 skill-category-title"
                 initial={{ opacity: 0, y: -10 }}
@@ -210,7 +304,10 @@ export default function About() {
                 viewport={{ once: true, amount: 0.1 }}
               >
                 {category.skills.map((skill, index) => (
-                  <div className="col-md-3 col-sm-6 mb-4" key={index}>
+                  <div
+                    className="col-md-3 col-sm-6 mb-4"
+                    key={`${category.title}-${skill.name}`}
+                  >
                     <motion.div
                       custom={index}
                       variants={cardVariants}
@@ -231,7 +328,9 @@ export default function About() {
                             style={{ color: skill.color }}
                           ></i>
                         )}
-                        <motion.h5 className="card-title">{skill.name}</motion.h5>
+                        <motion.h5 className="card-title">
+                          {skill.name}
+                        </motion.h5>
                         <motion.p className="card-text small text-muted">
                           {skill.description}
                         </motion.p>
@@ -255,7 +354,10 @@ export default function About() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <motion.h2 className="section-title" variants={educationItemVariants}>
+            <motion.h2
+              className="section-title"
+              variants={educationItemVariants}
+            >
               Education
             </motion.h2>
             <motion.p className="lead" variants={educationItemVariants}>
@@ -312,11 +414,15 @@ export default function About() {
               <h5>August 2025 to Present</h5>
               <ul>
                 <li>
-                  I have studied core subjects like ADBMS, Advanced Data
-                  Structure, Data Science using Python Programming, Basics of
-                  Internet of Things, Advanced Computer Networks, etc in this
-                  course.
+                  Pursuing M.Tech in Computer Science and Engineering with focus
+                  on scalable systems, advanced data structures, backend
+                  architecture, and full-stack application development.
                 </li>
+                <li>
+                  Currently exploring system design concepts, database
+                  optimization, and scalable MERN stack application workflows.
+                </li>
+                <li>Current CGPA: 8.86</li>
               </ul>
             </motion.div>
           </motion.div>
@@ -356,11 +462,15 @@ export default function About() {
               <h5>August 2020 to May 2024</h5>
               <ul>
                 <li>
-                  I have studied core subjects like DBMS, Data Structure, Basics
-                  of Artificial Intelligence, Web Development, Computer Networks,
-                  etc in this course.
+                  Studied core computer science subjects including DBMS, Data
+                  Structures, Computer Networks, Web Development, and Artificial
+                  Intelligence fundamentals.
                 </li>
-                <li>I have secured 7.49 CGPA in this course.</li>
+                <li>
+                  Built foundational frontend and full-stack development skills
+                  through academic and self-driven projects.
+                </li>
+                <li>Graduated with 7.49 CGPA.</li>
               </ul>
             </motion.div>
             <motion.div
@@ -413,7 +523,8 @@ export default function About() {
               <h5>Secondary and Higher Secondary School</h5>
               <h3>Advait Vidhyaniketan</h3>
               <h5 style={{ fontSize: "0.95rem", opacity: 0.8 }}>
-                70% in 12<sup>th</sup> Science (Mathematics) • 82.33% in 10<sup>th</sup>
+                70% in 12<sup>th</sup> Science (Mathematics) • 82.33% in 10{" "}
+                <sup>th</sup>
               </h5>
             </motion.div>
           </motion.div>

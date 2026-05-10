@@ -30,8 +30,8 @@ const ProjectCard = ({ project, isFeatured, index }) => {
 
         {/* Tech Stack Badges */}
         <div className="tech-stack">
-          {project.techStack.map((tech, techIndex) => (
-            <span key={techIndex} className="tech-badge">
+          {project.techStack.map((tech) => (
+            <span key={tech} className="tech-badge">
               {tech}
             </span>
           ))}
@@ -82,15 +82,23 @@ const ProjectCard = ({ project, isFeatured, index }) => {
             </a>
           )}
 
-          <div
-            className="demo-btn-wrapper"
-            onMouseEnter={() => !project.isDeployed && setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)}
-          >
+          <div className="demo-btn-wrapper">
             <button
-              className={`project-btn demo-btn ${!project.isDeployed ? "disabled" : ""
+              className={`project-btn demo-btn ${project.isDeployed ? "" : "disabled"
                 }`}
               disabled={!project.isDeployed}
+              onMouseEnter={() => project.isDeployed && setShowTooltip(true)}
+              onMouseLeave={() => setShowTooltip(false)}
+              onFocus={() => project.isDeployed && setShowTooltip(true)}
+              onBlur={() => setShowTooltip(false)}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") setShowTooltip(false);
+                if ((e.key === "Enter" || e.key === " ") && project.isDeployed) {
+                  // prevent scrolling on Space
+                  e.preventDefault();
+                  setShowTooltip((s) => !s);
+                }
+              }}
               onClick={() => {
                 if (project.isDeployed && project.liveDemoLink) {
                   window.open(
@@ -118,12 +126,12 @@ const ProjectCard = ({ project, isFeatured, index }) => {
               </svg>
               Live Demo
             </button>
+            </div>
             {showTooltip && !project.isDeployed && (
               <span className="tooltip">Not deployed (GitHub only)</span>
             )}
           </div>
         </div>
-      </div>
     </motion.div>
   );
 };
@@ -145,82 +153,93 @@ ProjectCard.propTypes = {
 export default function Projects() {
   // Project data with proper structure for engineering case studies
   const projectsData = [
-    {
-      id: 1,
-      title: "BookHaven — Full-Stack Architecture Case Study",
-      description:
-        "End-to-end library management system exploring authentication workflows, role-based access control, RESTful API design, and MongoDB data modeling for e-commerce applications.",
-      techStack: [
-        "React",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "JWT Authentication",
-        "REST APIs",
-        "Tailwind CSS",
-      ],
-      githubRepo: "https://github.com/JivaniParth/online-book-store",
-      caseStudyLink:
-        "https://github.com/JivaniParth/BookHaven-System-Design-Study",
-      liveDemoLink: null,
-      isFeatured: false,
-      isDeployed: false,
-    },
-    {
-      id: 2,
-      title: "BookHaven — Relational vs NoSQL Backend Comparison",
-      description:
-        "Parallel backend implementations comparing Flask + MySQL against Node.js + MongoDB for the same application, exploring schema design tradeoffs and developer experience.",
-      techStack: [
-        "React.js",
-        "Python",
-        "Flask",
-        "MySQL",
-        "JWT Authentication",
-        "Tailwind CSS",
-      ],
-      githubRepo: "https://github.com/JivaniParth/online-book-store-mongodb",
-      caseStudyLink: null,
-      liveDemoLink: null,
-      isFeatured: false,
-      isDeployed: false,
-    },
-    {
-      id: 3,
-      title: "Aradhya Gems",
-      description:
-        "Online Jewellery Store for a client. This project is built using MERN stack. This project includes JWT authentication, role-based access control, inventory management, order management, and payment gateway integration. This project is compact and can be used as a template for other e-commerce applications. This project includes some minor features like wishlist, cart, order tracking, etc. which makes it a good example of a complete e-commerce application.",
-      techStack: [
-        "React.js",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "JWT Authentication",
-        "Tailwind CSS",
-      ],
-      githubRepo: "https://github.com/JivaniParth/aradhya-gems",
-      caseStudyLink: null,
-      liveDemoLink: "https://aradhyagems.in/",
-      isFeatured: true,
-      isDeployed: true,
-    },
-    {
-      id: 4,
-      title: "Madhay Construction",
-      description:
-        "Engineered a high-performance, responsive landing page using React.js. Focused on SEO optimization and mobile-first design principles to improve user retention. This project demonstrates best practices in React development, including component-based architecture and efficient state management.",
-      techStack: [
-        "React.js",
-        "Tailwind CSS",
-        "SEO Optimization",
-      ],
-      githubRepo: "https://github.com/JivaniParth/madhay-construction",
-      caseStudyLink: null,
-      liveDemoLink: false,
-      isFeatured: false,
-      isDeployed: false,
-    },
-  ];
+  {
+    id: 1,
+    title: "BookHaven — Full-Stack Library Management System",
+    description:
+      "Full-stack MERN application built for academic research and system design exploration. Implemented authentication workflows, role-based access control, RESTful APIs, and MongoDB-based data modeling for scalable bookstore and library management operations.",
+    techStack: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JWT Authentication",
+      "REST APIs",
+      "Tailwind CSS",
+    ],
+    githubRepo: "https://github.com/JivaniParth/online-book-store",
+    caseStudyLink:
+      "https://github.com/JivaniParth/BookHaven-System-Design-Study",
+    liveDemoLink: null,
+    isFeatured: false,
+    isDeployed: false,
+  },
+
+  {
+    id: 2,
+    title: "BookHaven — Relational vs NoSQL Backend Comparison",
+    description:
+      "Comparative backend architecture study implementing the same application using Flask + MySQL and Node.js + MongoDB to analyze schema design tradeoffs, scalability considerations, and developer workflow differences.",
+    techStack: [
+      "React.js",
+      "Python",
+      "Flask",
+      "MySQL",
+      "Node.js",
+      "MongoDB",
+      "JWT Authentication",
+      "Tailwind CSS",
+    ],
+    githubRepo:
+      "https://github.com/JivaniParth/online-book-store-mongodb",
+    caseStudyLink: null,
+    liveDemoLink: null,
+    isFeatured: false,
+    isDeployed: false,
+  },
+
+  {
+    id: 3,
+    title: "Aradhya Gems — MERN E-commerce Platform",
+    description:
+      "Developed and deployed a full-stack MERN e-commerce platform for a jewelry business client featuring JWT authentication, role-based access control, inventory management, wishlist, cart functionality, and order tracking. Frontend deployed on Vercel, backend hosted on Render, and database managed using MongoDB Atlas.",
+    techStack: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "MongoDB Atlas",
+      "JWT Authentication",
+      "REST APIs",
+      "Tailwind CSS",
+      "Vercel",
+      "Render",
+    ],
+    githubRepo: "https://github.com/JivaniParth/aradhya-gems",
+    caseStudyLink: null,
+    liveDemoLink: "https://aradhyagems.in/",
+    isFeatured: true,
+    isDeployed: true,
+  },
+
+  {
+    id: 4,
+    title: "Madhay Construction — Corporate Frontend Website",
+    description:
+      "Developed a responsive corporate website frontend using React.js and Tailwind CSS with focus on clean UI structure, SEO-friendly architecture, and mobile-first design principles. Project structure and frontend skeleton completed for client requirements.",
+    techStack: [
+      "React.js",
+      "Tailwind CSS",
+      "Responsive Design",
+      "SEO Optimization",
+    ],
+    githubRepo: "https://github.com/JivaniParth/madhay-construction",
+    caseStudyLink: null,
+    liveDemoLink: null,
+    isFeatured: false,
+    isDeployed: false,
+  },
+];
 
   const featuredProject = projectsData.find((p) => p.isFeatured);
   const otherProjects = projectsData.filter((p) => !p.isFeatured);

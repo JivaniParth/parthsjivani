@@ -111,74 +111,104 @@ export default function Contactme() {
     tap: { scale: 0.95 },
   };
 
-  const validateField = (name, value) => {
+  const countryNames = {
+    US: 'United States',
+    IN: 'India',
+    GB: 'United Kingdom',
+    CA: 'Canada',
+    AU: 'Australia',
+    DE: 'Germany',
+    FR: 'France',
+    IT: 'Italy',
+    ES: 'Spain',
+    JP: 'Japan',
+    CN: 'China',
+    BR: 'Brazil',
+    MX: 'Mexico',
+    RU: 'Russia',
+  };
+
+  const validatePhoneNumber = (value) => {
+    if (!value || value.trim() === '') return "";
+
+    const phoneWithPlus = value.startsWith('+') ? value : `+${value}`;
+
+    try {
+      if (!isValidPhoneNumber(phoneWithPlus)) {
+        const countryCode = phoneCountry.toUpperCase();
+        const countryName = countryNames[countryCode] || countryCode;
+        return `Invalid phone number for ${countryName}`;
+      }
+
+      const phoneNumber = parsePhoneNumberWithError(phoneWithPlus);
+      if (!phoneNumber?.isValid()) {
+        return "Please enter a complete phone number";
+      }
+
+      return "";
+    } catch (error) {
+      return `Please enter a valid phone number ${error.message || ""}`;
+    }
+  };
+
+  const validateRequiredLengthField = (label, trimmed, minLength, maxLength) => {
+    if (trimmed === "") {
+      return `${label} is required`;
+    }
+
+    if (trimmed.length < minLength) {
+      return `${label} must be at least ${minLength} characters`;
+    }
+
+    if (maxLength && trimmed.length > maxLength) {
+      return `${label} cannot exceed ${maxLength} characters`;
+    }
+
+    return "";
+  };
+
+  const validateNameField = (trimmed) => {
+    if (trimmed === "") {
+      return "Name is required";
+    }
+
+    if (trimmed.length < 2) {
+      return "Name must be at least 2 characters";
+    }
+
+    return /^[a-zA-Z\s'-]+$/.test(trimmed)
+      ? ""
+      : "Name can only contain letters, spaces, hyphens, and apostrophes";
+  };
+
+  const validateEmailField = (trimmed, emailRegex) => {
+    if (!trimmed) {
+      return "Email is required";
+    }
+
+    return emailRegex.test(trimmed)
+      ? ""
+      : "Please enter a valid email address";
+  };
+
+  function validateField(name, value) {
     const trimmed = value.trim();
     // RFC 5322 compliant email regex (simplified)
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    const validateSubject = (fieldValue) => validateRequiredLengthField("Subject", fieldValue, 3, 100);
+    const validateMessage = (fieldValue) => validateRequiredLengthField("Message", fieldValue, 10, 1000);
 
     switch (name) {
       case "name":
-        if (!trimmed) return "Name is required";
-        if (trimmed.length < 2) return "Name must be at least 2 characters";
-        if (!/^[a-zA-Z\s'-]+$/.test(trimmed)) return "Name can only contain letters, spaces, hyphens, and apostrophes";
-        return "";
+        return validateNameField(trimmed);
       case "email":
-        if (!trimmed) return "Email is required";
-        if (!emailRegex.test(trimmed)) return "Please enter a valid email address";
-        return "";
-      case "contactNo": {
-        // Phone number is optional - only validate if user provides a value
-        if (!value || value.trim() === '') return "";
-
-        // Add + prefix if not present for validation
-        const phoneWithPlus = value.startsWith('+') ? value : `+${value}`;
-
-        try {
-          // Validate using libphonenumber-js
-          if (!isValidPhoneNumber(phoneWithPlus)) {
-            // Get country name for error message
-            const countryCode = phoneCountry.toUpperCase();
-            const countryNames = {
-              'US': 'United States',
-              'IN': 'India',
-              'GB': 'United Kingdom',
-              'CA': 'Canada',
-              'AU': 'Australia',
-              'DE': 'Germany',
-              'FR': 'France',
-              'IT': 'Italy',
-              'ES': 'Spain',
-              'JP': 'Japan',
-              'CN': 'China',
-              'BR': 'Brazil',
-              'MX': 'Mexico',
-              'RU': 'Russia',
-            };
-            const countryName = countryNames[countryCode] || countryCode;
-            return `Invalid phone number for ${countryName}`;
-          }
-
-          // Additional check: ensure number is complete
-          const phoneNumber = parsePhoneNumberWithError(phoneWithPlus);
-          if (!phoneNumber || !phoneNumber.isValid()) {
-            return "Please enter a complete phone number";
-          }
-
-          return "";
-        } catch (error) {
-          return `Please enter a valid phone number ${error.message || ""}`;
-        }
-      }
+        return validateEmailField(trimmed, emailRegex);
+      case "contactNo":
+        return validatePhoneNumber(value);
       case "subject":
-        if (!trimmed) return "Subject is required";
-        if (trimmed.length < 3) return "Subject must be at least 3 characters";
-        if (trimmed.length > 100) return "Subject cannot exceed 100 characters";
-        return "";
+        return validateSubject(trimmed);
       case "message":
-        if (!trimmed) return "Message is required";
-        if (trimmed.length < 10) return "Message must be at least 10 characters";
-        if (trimmed.length > 1000) return "Message cannot exceed 1000 characters";
-        return "";
+        return validateMessage(trimmed);
       default:
         return "";
     }
@@ -199,7 +229,7 @@ export default function Contactme() {
   const handleNameChange = (e) => {
     const { value } = e.target;
     // Only allow letters, spaces, hyphens, and apostrophes
-    const filteredValue = value.replace(/[^a-zA-Z\s'-]/g, "");
+    const filteredValue = value.replaceAll(/[^a-zA-Z\s'-]/g, "");
     setFormData((prev) => ({ ...prev, name: filteredValue }));
 
     // Clear error on change if field was previously validated
@@ -223,14 +253,14 @@ export default function Contactme() {
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-    const error = validateField(name, value, { ...formData, [name]: value });
+    const error = validateField(name, value);
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = Object.keys(formData).reduce((acc, key) => {
-      const err = validateField(key, formData[key], formData);
+      const err = validateField(key, formData[key]);
       if (err) acc[key] = err;
       return acc;
     }, {});
@@ -280,7 +310,6 @@ export default function Contactme() {
   };
 
   return (
-    <>
       <div className="container">
         <motion.div
           className="flex contact-me-content"
@@ -410,7 +439,7 @@ export default function Contactme() {
               style={{ display: "flex", justifyContent: "center" }}
               variants={itemVariants}
             >
-              <SocialIcon url="https://drive.google.com/file/d/1Z3ByYvIAjOlXqSclHIUOkzlQ0wB7swXT/view">
+              <SocialIcon url="https://drive.google.com/file/d/1r-xpRhCYUdYHM1FLHMbE23Q2JNhJF_oc/view">
                 <motion.button
                   type="button"
                   className="btn btn-info resumeButton"
@@ -615,6 +644,5 @@ export default function Contactme() {
           </form>
         </motion.div>
       </div>
-    </>
   );
 }
