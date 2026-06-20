@@ -1,211 +1,215 @@
-.content {
-  margin-top: 80px;
-  padding-top: 2rem;
-  width: 100%;
-  color: #f5f5f5;
+/* ===================================================
+   EXPERIENCE PAGE STYLES
+   =================================================== */
+
+.experience-page {
+  margin-top: 68px;
+  padding-top: clamp(3rem, 6vw, 6rem);
+  padding-bottom: clamp(3rem, 6vw, 6rem);
 }
 
-/* Experience/School Card */
+.experience-page-header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 5vw, 5rem);
+}
 
-.school {
+.experience-page-header h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.experience-page-header p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* ── Experience Card ── */
+.exp-card {
+  background: linear-gradient(135deg, rgba(0, 200, 215, 0.06) 0%, var(--glass-bg) 100%);
+  border: 1px solid rgba(0, 200, 215, 0.2);
+  border-top: 2px solid var(--accent-teal);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  margin-bottom: clamp(1.5rem, 4vw, 3rem);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-normal),
+              box-shadow var(--transition-normal),
+              border-color var(--transition-normal);
   display: flex;
-  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.exp-card::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(0, 200, 215, 0.08), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.exp-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 200, 215, 0.45);
+  box-shadow: var(--shadow-card), 0 0 60px rgba(0, 200, 215, 0.15);
+}
+
+/* Active pulse (freelance - current role) */
+.exp-card.active-role::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+  70%  { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* Logo area */
+.exp-logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0.25rem;
+}
+
+.exp-logo img {
+  width: clamp(60px, 10vw, 90px);
+  height: clamp(60px, 10vw, 90px);
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.05);
+  padding: 10px;
+  border: 1px solid var(--glass-border);
+}
+
+/* Details area */
+.exp-details { flex: 1; min-width: 0; }
+
+.exp-badge {
+  display: inline-flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin: 2rem 0;
-  padding: 2rem;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  transition: all 0.3s ease;
-}
-
-.school:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-5px);
-}
-
-.schooldetails {
-  flex: 1;
-  min-width: 280px;
-  padding: 1.5rem;
-}
-
-.schooldetails h5 {
-  margin: 0 0 0.5rem 0;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  opacity: 0.7;
-  font-weight: 500;
-}
-
-.schooldetails h1 {
-  margin: 0.5rem 0;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.72rem;
   font-weight: 700;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: #007bff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.exp-badge.freelance {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.exp-badge.internship {
+  background: var(--accent-violet-dim);
+  border: 1px solid rgba(124, 106, 247, 0.3);
+  color: var(--accent-violet);
+}
+
+.exp-details h5 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.exp-details h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  transition: color var(--transition-fast);
+  cursor: default;
+  -webkit-text-fill-color: initial;
+  background: none;
+}
+
+.exp-details h1 a {
+  color: inherit;
   text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
-.schooldetails h1:hover {
-  color: #0056b3;
-}
+.exp-details h1 a:hover { color: var(--accent-teal); }
 
-.schooldetails h4 {
-  margin: 0.5rem 0 1rem 0;
-  font-size: clamp(0.95rem, 3vw, 1.3rem);
+.exp-details h4 {
+  font-size: 0.85rem;
   font-weight: 500;
-  opacity: 0.8;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
 }
 
-.schooldetails p {
-  margin: 1rem 0;
+.exp-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.exp-details ul li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
   line-height: 1.7;
-  font-size: clamp(0.85rem, 2vw, 1rem);
+  padding: 0.3rem 0 0.3rem 1.3rem;
+  position: relative;
 }
 
-.schooldetails ul {
-  list-style: disc;
-  padding-left: 1.5rem;
-  margin: 1rem 0;
+.exp-details ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent-teal);
+  font-size: 0.7rem;
+  top: 0.42rem;
 }
 
-.schooldetails li {
-  margin: 0.75rem 0;
-  line-height: 1.6;
-  font-size: clamp(0.85rem, 2vw, 1rem);
-}
-
-/* Photo Section */
-.photo {
-  flex: 1;
-  min-width: 280px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem;
-}
-
-.photo img {
-  width: 100%;
-  max-width: 350px;
-  border-radius: 12px;
-  object-fit: cover;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.photo:hover img {
-  transform: scale(1.05);
-  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.2);
-}
-
-body.dark .school {
-  background: rgba(255, 255, 255, 0.04);
-}
-
-body.dark .school:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* ===== TABLET STYLES (768px and below) ===== */
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
 @media (max-width: 768px) {
-  .content {
-    margin-top: 70px;
-    padding-top: 1.5rem;
-  }
-
-  .school {
+  .exp-card {
     flex-direction: column;
-    gap: 1.5rem;
-    margin: 1.5rem 0;
-    padding: 1.5rem;
+    gap: 1rem;
   }
 
-  .schooldetails,
-  .photo {
-    width: 100%;
-    min-width: auto;
-    padding: 1rem;
+  .exp-card.active-role::after {
+    top: 1rem;
+    right: 1rem;
   }
 
-  .schooldetails h1 {
-    font-size: 1.8rem;
-  }
-
-  .schooldetails h4 {
-    font-size: 1.1rem;
-  }
-
-  .schooldetails p {
-    font-size: 0.95rem;
-  }
-
-  .photo img {
-    max-width: 300px;
-  }
-
-  /* Reorder images to top on mobile and tablet */
-  .exp-photo-1 {
-    order: -1;
-  }
-
-  .exp-photo-2 {
-    order: -1;
-  }
+  .exp-logo img { width: 64px; height: 64px; }
 }
 
-/* ===== MOBILE STYLES (480px and below) ===== */
 @media (max-width: 480px) {
-  .content {
-    margin-top: 60px;
-    padding-top: 1rem;
-  }
-
-  .school {
-    margin: 1rem 0;
-    padding: 1rem;
-    border-radius: 8px;
-  }
-
-  .schooldetails,
-  .photo {
-    padding: 0.75rem;
-  }
-
-  .schooldetails h5 {
-    font-size: 0.85rem;
-  }
-
-  .schooldetails h1 {
-    font-size: 1.5rem;
-    margin: 0.3rem 0;
-  }
-
-  .schooldetails h4 {
-    font-size: 0.95rem;
-    margin: 0.3rem 0 0.75rem 0;
-  }
-
-  .schooldetails p {
-    margin: 0.75rem 0;
-    font-size: 0.85rem;
-  }
-
-  .schooldetails li {
-    margin: 0.5rem 0;
-    font-size: 0.85rem;
-  }
-
-  .photo img {
-    max-width: 250px;
-    border-radius: 8px;
-  }
-
-  /* Reorder images to top on mobile */
-  .exp-photo-1 {
-    order: -1;
-  }
-
-  .exp-photo-2 {
-    order: -1;
-  }
+  .exp-card { border-radius: var(--radius-lg); padding: 1.25rem; }
 }

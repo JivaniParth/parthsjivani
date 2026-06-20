@@ -1,22 +1,34 @@
+/* ===================================================
+   FOOTER STYLES — dark & light mode
+   =================================================== */
+
 .footer-container {
-  padding-left: 2vw;
-  padding-right: 2vw;
   width: 100%;
 }
 
 .footer {
   padding: 2rem 1rem;
   margin: 2rem 0 0 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--glass-border);
   text-align: center;
-  background: rgba(255, 255, 255, 0.04);
-  color: #f5f5f5;
+  background: var(--glass-bg);
+  color: var(--text-secondary);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .footer-content {
   text-align: center;
   font-size: clamp(0.9rem, 2vw, 1.1rem);
   line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.footer-text {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  margin: 0.5rem 0;
+  color: var(--text-secondary);
 }
 
 .footer-link {
@@ -25,37 +37,37 @@
   transition: color 0.3s ease;
 }
 
-.footer-link:hover {
-  color: #66b2ff;
-}
-
-.footer-text {
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  margin: 0.5rem 0;
-}
+.footer-link:hover { color: var(--accent-teal); }
 
 .footer-author {
-  font-family: Poppins, sans-serif;
-  font-weight: 600;
-  color: #66b2ff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: var(--accent-teal);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.dark-footer {
-  color: #f5f5f5;
+.footer-author:hover { color: var(--accent-violet); }
+
+/* Light mode */
+.light .footer {
+  border-top-color: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.25);
 }
 
-/* ===== MOBILE STYLES (480px and below) ===== */
+.light .footer-content,
+.light .footer-text { color: rgba(15, 23, 42, 0.6); }
+
+.light .footer-author { color: #0891b2; }
+.light .footer-author:hover { color: #6d4adb; }
+
+/* ===== MOBILE STYLES ===== */
 @media (max-width: 480px) {
   .footer {
     padding: 1.5rem 0.75rem;
     margin: 1.5rem 0 0 0;
   }
 
-  .footer-content {
-    font-size: 0.85rem;
-  }
-
-  .footer-text {
-    font-size: 0.85rem;
-  }
+  .footer-content,
+  .footer-text { font-size: 0.85rem; }
 }

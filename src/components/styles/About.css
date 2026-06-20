@@ -1,140 +1,50 @@
-/* About Page Wrapper */
+/* ===================================================
+   ABOUT PAGE — Skills + Education
+   =================================================== */
+
 .about-page {
-  width: 100%;
-  min-height: 100vh;
+  margin-top: 68px;
 }
 
-/* ===== SKILLS SECTION ===== */
+/* ===================================================
+   SKILLS SECTION
+   =================================================== */
 .skills-section {
-  margin-top: 80px;
-  padding-top: 2rem;
+  padding-top: clamp(3rem, 6vw, 6rem);
+  padding-bottom: clamp(3rem, 6vw, 6rem);
+  position: relative;
 }
 
 .skills-content {
-  padding-top: 2rem;
-  width: 100%;
-  color: #f5f5f5;
+  margin-bottom: 3rem;
 }
 
-/* Skills Page Container */
-.skillsPageContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-  padding: 0 1rem;
+.skills-content h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
 }
 
-.skillCategory {
-  padding: 2rem;
-  border-radius: 12px;
-  background: #000000;
-  transition: all 0.3s ease;
+.skills-content .lead {
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 2vw, 1.15rem);
 }
 
-.skillCategory:hover {
-  background: #1a1a1a;
-  transform: translateY(-5px);
-}
-
-.skillCategory h3 {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
-  color: #66b2ff;
-}
-
-.skillCategory ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.skillCategory li {
-  padding: 0.75rem 0;
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.2s ease;
-}
-
-.skillCategory li:last-child {
-  border-bottom: none;
-}
-
-.skillCategory li:hover {
-  padding-left: 0.5rem;
-  color: #66b2ff;
-}
-
-body.dark .skillCategory {
-  background: rgba(255, 255, 255, 0.04);
-}
-
-body.dark .skillCategory:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-body.dark .skillCategory li {
-  border-bottom-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Grid for icon-based skills */
-.skillsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-  padding: 2rem 0;
-}
-
-.skillItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.skillItem:hover {
-  transform: translateY(-8px);
-}
-
-.skillIcon {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-  border-radius: 12px;
-  background: rgba(0, 123, 255, 0.1);
-  transition: all 0.3s ease;
-}
-
-.skillItem:hover .skillIcon {
-  background: rgba(0, 123, 255, 0.2);
-  transform: scale(1.1);
-}
-
-.skillIcon svg {
-  width: 100%;
-  height: 100%;
-  padding: 15px;
-}
-
-.skillName {
-  font-weight: 600;
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-}
-
-/* Skill Category Titles */
+/* Category title */
 .skill-category-title {
-  color: #00bcd4;
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
-  font-weight: 600;
-  margin: 2rem 0 1.5rem 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  color: var(--accent-teal);
+  letter-spacing: 0.03em;
   position: relative;
   padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem !important;
 }
 
 .skill-category-title::after {
@@ -143,321 +53,314 @@ body.dark .skillCategory li {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #00bcd4, transparent);
+  width: 48px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent-teal), transparent);
 }
 
-/* ===== EDUCATION SECTION ===== */
+/* ── Skill Card (glassmorphism) ── */
+.hover-card {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-top: 2px solid var(--accent-teal) !important;
+  border-radius: var(--radius-md) !important;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-card) !important;
+  color: var(--text-primary) !important;
+  transition: transform var(--transition-normal),
+              box-shadow var(--transition-normal),
+              border-color var(--transition-normal) !important;
+}
+
+.hover-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-card), var(--shadow-glow-teal) !important;
+  border-top-color: var(--accent-violet) !important;
+}
+
+/* Per-category border colors & glows */
+.mb-5:nth-child(1) .hover-card { 
+  border-top-color: var(--accent-teal) !important; 
+  border-color: rgba(0, 200, 215, 0.2) !important;
+  background: linear-gradient(135deg, rgba(0, 200, 215, 0.06) 0%, var(--glass-bg) 100%) !important;
+}
+.mb-5:nth-child(1) .hover-card::before {
+  content: ''; position: absolute; top: -40px; right: -40px; width: 120px; height: 120px;
+  background: radial-gradient(circle, rgba(0, 200, 215, 0.08), transparent 70%); pointer-events: none; z-index: 0;
+}
+
+.mb-5:nth-child(2) .hover-card { 
+  border-top-color: var(--accent-violet) !important; 
+  border-color: rgba(124, 106, 247, 0.2) !important;
+  background: linear-gradient(135deg, rgba(124, 106, 247, 0.06) 0%, var(--glass-bg) 100%) !important;
+}
+.mb-5:nth-child(2) .hover-card::before {
+  content: ''; position: absolute; top: -40px; right: -40px; width: 120px; height: 120px;
+  background: radial-gradient(circle, rgba(124, 106, 247, 0.08), transparent 70%); pointer-events: none; z-index: 0;
+}
+
+.mb-5:nth-child(3) .hover-card { 
+  border-top-color: var(--accent-amber) !important; 
+  border-color: rgba(240, 180, 41, 0.2) !important;
+  background: linear-gradient(135deg, rgba(240, 180, 41, 0.06) 0%, var(--glass-bg) 100%) !important;
+}
+.mb-5:nth-child(3) .hover-card::before {
+  content: ''; position: absolute; top: -40px; right: -40px; width: 120px; height: 120px;
+  background: radial-gradient(circle, rgba(240, 180, 41, 0.08), transparent 70%); pointer-events: none; z-index: 0;
+}
+.mb-5:nth-child(2) .hover-card:hover { box-shadow: var(--shadow-card), var(--shadow-glow-violet) !important; }
+.mb-5:nth-child(3) .hover-card:hover { box-shadow: var(--shadow-card), 0 0 40px rgba(240, 180, 41, 0.15) !important; }
+
+.hover-card .card-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary) !important;
+  margin-top: 0.75rem;
+}
+
+.hover-card .card-text {
+  color: var(--text-secondary) !important;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* Force Bootstrap text-muted to respect dark mode */
+.text-muted { color: var(--text-secondary) !important; }
+
+/* ===================================================
+   EDUCATION SECTION
+   =================================================== */
 .education-section {
-  padding-top: 8rem;
-  margin-top: 6rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: clamp(3rem, 6vw, 6rem);
+  padding-bottom: clamp(3rem, 6vw, 6rem);
+  position: relative;
+}
+
+.education-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
 }
 
 .education-content {
-  padding-top: 2rem;
-  width: 100%;
-  color: #f5f5f5;
+  margin-bottom: 3rem;
 }
 
-/* Degree/Education Card */
-.degree,
-.masters-degree {
+.education-content .section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.education-content .section-title::after {
+  display: none !important;
+}
+
+.education-content .lead {
+  color: var(--text-secondary);
+}
+
+/* ── Timeline Container ── */
+.education-timeline {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  padding-left: 48px;
+}
+
+.education-timeline::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent-teal), transparent);
+  border-radius: 2px;
+}
+
+/* ── Education Card ── */
+.edu-card {
+  position: relative;
+  background: 
+    radial-gradient(circle at calc(100% + 20px) -20px, rgba(124, 106, 247, 0.15) 0%, transparent 180px),
+    linear-gradient(135deg, rgba(124, 106, 247, 0.06) 0%, var(--glass-bg) 100%);
+  border: 1px solid rgba(124, 106, 247, 0.2);
+  border-top: 2px solid var(--accent-violet);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: 2.5rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-normal),
+              box-shadow var(--transition-normal),
+              border-color var(--transition-normal);
   display: flex;
+  align-items: flex-start;
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.edu-card::before {
+  content: '';
+  position: absolute;
+  left: -33px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-teal);
+  border: 3px solid var(--bg-primary);
+  box-shadow: 0 0 0 2px var(--accent-teal);
+}
+
+.edu-card:hover {
+  transform: translateX(6px);
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-card), var(--shadow-glow-teal);
+}
+
+.edu-logo {
+  flex: 0 0 auto;
+}
+
+.edu-logo img {
+  width: clamp(60px, 10vw, 90px);
+  height: clamp(60px, 10vw, 90px);
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.04);
+  padding: 8px;
+}
+
+.edu-details { flex: 1; min-width: 0; }
+
+.edu-details h5 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-teal);
+  margin-bottom: 0.4rem;
+}
+
+.edu-details h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+  -webkit-text-fill-color: initial;
+  background: none;
+}
+
+.edu-details h3 {
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+
+.edu-details h5.date {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  margin-bottom: 0.75rem;
+}
+
+.edu-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.edu-details ul li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  padding: 0.25rem 0 0.25rem 1.2rem;
+  position: relative;
+}
+
+.edu-details ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent-teal);
+  font-size: 0.7rem;
+  top: 0.35rem;
+}
+
+/* ── School compact card ── */
+.school-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  max-width: 480px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.school-card h5 { color: var(--text-muted); margin-bottom: 0.5rem; letter-spacing: 0; text-transform: none; }
+.school-card h3 { color: var(--text-primary); font-size: 1.15rem; margin-bottom: 0.4rem; }
+.school-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+/* ===================================================
+   LEGACY SUPPORT (old .masters-degree, .degree etc)
+   =================================================== */
+.masters-degree, .degree, .school {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin: 2rem 0;
-  padding: 2rem;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  transition: all 0.3s ease;
+  gap: 1.5rem;
 }
 
-.degree:hover,
-.masters-degree:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-5px);
+.degree-photo-1 img,
+.degree-photo-2 img {
+  width: clamp(80px, 12vw, 130px);
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.04);
+  padding: 8px;
 }
 
-.degreedetails,
-.educationdetails,
-.schooldetails {
-  flex: 1;
-  min-width: 280px;
-  padding: 1.5rem;
-}
-
-.degreedetails h5,
-.schooldetails h5 {
-  margin: 0 0 0.5rem 0;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  opacity: 0.7;
-  font-weight: 500;
-}
-
-.degreedetails h1 {
-  margin: 0.5rem 0;
-  font-weight: 700;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: #007bff;
-}
-
-.degreedetails h3,
-.schooldetails h3 {
-  margin: 0.5rem 0 1rem 0;
-  font-size: clamp(0.95rem, 3vw, 1.5rem);
-  font-weight: 600;
-}
-
-.degreedetails ul {
-  list-style: disc;
-  padding-left: 1.5rem;
-  margin: 1rem 0;
-}
-
-.degreedetails li {
-  margin: 0.75rem 0;
-  line-height: 1.6;
-  font-size: clamp(0.85rem, 2vw, 1rem);
-}
-
-/* Photo Section */
-.photo {
-  flex: 1;
-  min-width: 280px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem;
-}
-
-.photo img {
-  width: 100%;
-  max-width: 350px;
-  border-radius: 12px;
-  object-fit: cover;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.photo:hover img {
-  transform: scale(1.05);
-  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.2);
-}
-
-body.dark .degree,
-body.dark .masters-degree {
-  background: rgba(255, 255, 255, 0.04);
-}
-
-body.dark .degree:hover,
-body.dark .masters-degree:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-/* ===== TABLET STYLES (768px and below) ===== */
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
 @media (max-width: 768px) {
-  .skills-content {
-    margin-top: 70px;
-    padding-top: 1.5rem;
-  }
-
-  .education-content {
-    margin-top: 70px;
-    padding-top: 1.5rem;
-  }
-
-  .skillsPageContainer {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1.5rem;
-    padding: 0 0.5rem;
-  }
-
-  .skillCategory {
-    padding: 1.5rem;
-  }
-
-  .skillCategory h3 {
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-  }
-
-  .skillsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 1.5rem;
-    padding: 1.5rem 0;
-  }
-
-  .skillIcon {
-    width: 90px;
-    height: 90px;
-  }
-
-  .skillName {
-    font-size: 0.95rem;
-  }
-
-  .degree,
-  .masters-degree {
-    flex-direction: column;
-    gap: 1.5rem;
-    margin: 1.5rem 0;
-    padding: 1.5rem;
-  }
-
-  .degreedetails,
-  .schooldetails,
-  .photo {
-    width: 100%;
-    min-width: auto;
-    padding: 1rem;
-  }
-
-  .degreedetails h1 {
-    font-size: 1.8rem;
-  }
-
-  .degreedetails h3 {
-    font-size: 1.2rem;
-  }
-
-  .photo img {
-    max-width: 300px;
-  }
-
-  /* Reorder images to top on tablet and below */
-  .degree,
-  .masters-degree {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .degree-photo-1 {
-    order: -1;
-  }
-
-  .degree-photo-2 {
-    order: -1;
-  }
-
-  .degree-photo-3 {
-    order: -1;
-    width: 100% !important;
-  }
+  .edu-card { flex-direction: column; gap: 1rem; }
+  .edu-card::before { left: -25px; width: 12px; height: 12px; transform: translate(-50%, -50%); }
+  .education-timeline { padding-left: 40px; }
+  .education-timeline::before { left: 16px; transform: translateX(-50%); }
+  .edu-logo img { width: 60px; height: 60px; }
+  .masters-degree, .degree { flex-direction: column; align-items: center; }
 }
 
-/* ===== MOBILE STYLES (480px and below) ===== */
 @media (max-width: 480px) {
-  .skills-content {
-    margin-top: 60px;
-    padding-top: 1rem;
-  }
-
-  .education-content {
-    margin-top: 60px;
-    padding-top: 1rem;
-  }
-
-  .skillsPageContainer {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 0;
-  }
-
-  .skillCategory {
-    padding: 1.25rem;
-  }
-
-  .skillCategory h3 {
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
-  }
-
-  .skillCategory li {
-    padding: 0.5rem 0;
-    font-size: 0.9rem;
-  }
-
-  .skillsGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    padding: 1rem 0;
-  }
-
-  .skillIcon {
-    width: 70px;
-    height: 70px;
-  }
-
-  .skillIcon svg {
-    padding: 10px;
-  }
-
-  .skillName {
-    font-size: 0.8rem;
-  }
-
-  .degree {
-    margin: 1rem 0 !important;
-    padding: 1rem;
-    border-radius: 8px;
-  }
-
-  .masters-degree {
-    margin: 4.5rem 0 1rem !important;
-    padding: 1rem;
-    border-radius: 8px;
-  }
-
-  .degreedetails,
-  .schooldetails {
-    padding: 0.75rem;
-  }
-
-  .photo {
-    padding: 1rem !important;
-  }
-
-  .degreedetails h5,
-  .schooldetails h5 {
-    font-size: 0.85rem;
-  }
-
-  .degreedetails h1 {
-    font-size: 1.5rem;
-    margin: 0.3rem 0;
-  }
-
-  .degreedetails h3,
-  .schooldetails h3 {
-    font-size: 1rem;
-    margin: 0.3rem 0 0.75rem 0;
-  }
-
-  .degreedetails li {
-    margin: 0.5rem 0;
-    font-size: 0.85rem;
-  }
-
-  .photo img {
-    max-width: 250px;
-    border-radius: 8px;
-  }
-
-  /* Reorder images to top on mobile */
-  .degree-photo-1 {
-    order: -1;
-  }
-
-  .degree-photo-2 {
-    order: -1;
-  }
-
-  .degree-photo-3 {
-    order: -1;
-    width: 100% !important;
-  }
+  .education-timeline { padding-left: 32px; }
+  .education-timeline::before { left: 12px; transform: translateX(-50%); }
+  .edu-card::before { left: -21px; transform: translate(-50%, -50%); }
+  .hover-card { border-radius: 12px !important; }
 }
-

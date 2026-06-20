@@ -347,10 +347,7 @@ export default function About() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <motion.h2
-              className="section-title"
-              variants={educationItemVariants}
-            >
+            <motion.h2 className="section-title" variants={educationItemVariants}>
               Education
             </motion.h2>
             <motion.p className="lead" variants={educationItemVariants}>
@@ -358,169 +355,97 @@ export default function About() {
             </motion.p>
           </motion.div>
 
-          {/* Master's Degree */}
-          <motion.div
-            className="container flex masters-degree"
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginLeft: "auto",
-              marginRight: "auto",
-              marginTop: "clamp(5rem, 4vw, 3rem)",
-              marginBottom: "clamp(1rem, 4vw, 3rem)",
-              padding: "clamp(1rem, 3vw, 2.5rem)",
-            }}
-            variants={educationItemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <motion.div
-              className="photo degree-photo-1"
-              style={{
-                margin: "clamp(0.5rem, 2vw, 1.5rem)",
-                padding: "clamp(0.5rem, 2vw, 1.5rem)",
-              }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              <img src="/new-nuv.png" alt="NUV" />
-            </motion.div>
-            <motion.div
-              className="degreedetails"
-              style={{
-                margin: "clamp(0.5rem, 2vw, 1.5rem)",
-                padding: "clamp(0.5rem, 2vw, 1.5rem)",
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              <h5>Pursuing Master&apos;s Degree from</h5>
-              <h1>Navrachana University</h1>
-              <h3>Master of Technology in Computer Science and Engineering</h3>
-              <h5>August 2025 to Present</h5>
-              <ul>
-                <li>
-                  Pursuing M.Tech in Computer Science and Engineering with focus
-                  on scalable systems, advanced data structures, backend
-                  architecture, and full-stack application development.
-                </li>
-                <li>
-                  Currently exploring system design concepts, database
-                  optimization, and scalable MERN stack application workflows.
-                </li>
-                <li>Current CGPA: 8.86</li>
-              </ul>
-            </motion.div>
-          </motion.div>
+          {/* Timeline */}
+          <div className="education-timeline">
 
-          {/* Bachelor's Degree */}
-          <motion.div
-            className="container flex degree"
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginLeft: "auto",
-              marginRight: "auto",
-              marginTop: "clamp(1rem, 4vw, 3rem)",
-              marginBottom: "clamp(1rem, 4vw, 3rem)",
-              padding: "clamp(1rem, 3vw, 2.5rem)",
-            }}
-            variants={educationItemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
+            {/* Master's Degree */}
             <motion.div
-              className="degreedetails"
-              style={{
-                margin: "clamp(0.5rem, 2vw, 1.5rem)",
-                padding: "clamp(0.5rem, 2vw, 1.5rem)",
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              className="edu-card"
+              variants={educationItemVariants}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h5>Bachelor&apos;s Degree done from</h5>
-              <h1>Shantilal Shah Engineering College</h1>
-              <h3>Bachelor of Engineering in Information Technology</h3>
-              <h5>August 2020 to May 2024</h5>
-              <ul>
-                <li>
-                  Studied core computer science subjects including DBMS, Data
-                  Structures, Computer Networks, Web Development, and Artificial
-                  Intelligence fundamentals.
-                </li>
-                <li>
-                  Built foundational frontend and full-stack development skills
-                  through academic and self-driven projects.
-                </li>
-                <li>Graduated with 7.49 CGPA.</li>
-              </ul>
+              <div className="edu-logo">
+                <motion.img
+                  src="/new-nuv.png"
+                  alt="Navrachana University"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+              <div className="edu-details">
+                <h5>Pursuing Master&apos;s Degree from</h5>
+                <h1>Navrachana University</h1>
+                <h3>Master of Technology in Computer Science and Engineering</h3>
+                <h5 className="date">August 2025 - Present</h5>
+                <ul>
+                  <li>
+                    Pursuing M.Tech in CSE with focus on scalable systems, advanced data
+                    structures, backend architecture, and full-stack application development.
+                  </li>
+                  <li>
+                    Currently exploring system design concepts, database optimization, and
+                    scalable MERN stack application workflows.
+                  </li>
+                  <li>Current CGPA: <strong style={{ color: "var(--accent-teal)" }}>8.72</strong></li>
+                </ul>
+              </div>
             </motion.div>
-            <motion.div
-              className="photo degree-photo-2"
-              style={{
-                margin: "clamp(0.5rem, 2vw, 1.5rem)",
-                padding: "clamp(0.5rem, 2vw, 1.5rem)",
-              }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              <img src="/college.png" alt="SSEC" />
-            </motion.div>
-          </motion.div>
 
-          {/* School - Simplified */}
-          <motion.div
-            className="container flex school"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              marginLeft: "auto",
-              marginRight: "auto",
-              marginTop: "clamp(1rem, 4vw, 3rem)",
-              marginBottom: "clamp(1rem, 4vw, 3rem)",
-              padding: "clamp(1rem, 3vw, 2rem)",
-              opacity: 0.85,
-            }}
-            variants={educationItemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
+            {/* Bachelor's Degree */}
             <motion.div
-              className="schooldetails"
-              style={{
-                margin: "clamp(0.5rem, 2vw, 1rem)",
-                padding: "clamp(0.5rem, 2vw, 1rem)",
-                textAlign: "center",
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              className="edu-card"
+              variants={educationItemVariants}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <h5>Secondary and Higher Secondary School</h5>
-              <h3>Advait Vidhyaniketan</h3>
-              <h5 style={{ fontSize: "0.95rem", opacity: 0.8 }}>
-                70% in 12<sup>th</sup> Science (Mathematics) • 82.33% in 10{" "}
-                <sup>th</sup>
-              </h5>
+              <div className="edu-logo">
+                <motion.img
+                  src="/college.png"
+                  alt="Shantilal Shah Engineering College"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+              <div className="edu-details">
+                <h5>Bachelor&apos;s Degree from</h5>
+                <h1>Shantilal Shah Engineering College</h1>
+                <h3>Bachelor of Engineering in Information Technology</h3>
+                <h5 className="date">August 2020 - May 2024</h5>
+                <ul>
+                  <li>
+                    Studied core computer science subjects including DBMS, Data Structures,
+                    Computer Networks, Web Development, and AI fundamentals.
+                  </li>
+                  <li>
+                    Built foundational frontend and full-stack development skills through
+                    academic and self-driven projects.
+                  </li>
+                  <li>Graduated with CGPA: <strong style={{ color: "var(--accent-violet)" }}>7.49</strong></li>
+                </ul>
+              </div>
             </motion.div>
-          </motion.div>
+
+            {/* School */}
+            <motion.div
+              className="edu-card"
+              variants={educationItemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <div className="edu-details" style={{ textAlign: "center", width: "100%" }}>
+                <h5>Secondary &amp; Higher Secondary School</h5>
+                <h1>Advait Vidhyaniketan</h1>
+                <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "0.5rem" }}>
+                  70% in 12<sup>th</sup> Science (Mathematics) &nbsp;•&nbsp; 82.33% in 10<sup>th</sup>
+                </p>
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </div>
     </div>

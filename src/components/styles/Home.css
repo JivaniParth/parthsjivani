@@ -1,88 +1,133 @@
-.content {
-  margin-top: 80px;
-  padding-top: 2rem;
-  width: 100%;
+/* ===================================================
+   HOME PAGE STYLES
+   =================================================== */
+
+/* ── Hero Section ── */
+.hero-section {
+  position: relative;
+  min-height: calc(100vh - 68px);
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  color: #f5f5f5;
-  background: transparent;
+  padding-top: clamp(2rem, 5vw, 4rem);
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+  overflow: hidden;
 }
 
-/* Hero Section Styles */
-.photo {
-  flex: 1;
-  min-width: 250px;
+/* Ambient glow orbs */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(124, 106, 247, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 200, 215, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Hero Inner Layout ── */
+.hero-inner {
+  position: relative;
+  z-index: 1;
   display: flex;
-  justify-content: center;
   align-items: center;
+  gap: clamp(2rem, 4vw, 4rem);
+  width: 100%;
 }
 
-.photo img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 50px;
-  object-fit: cover;
+/* ── Photo frame ── */
+.hero-photo-wrapper {
+  flex: 0 0 auto;
+  position: relative;
 }
 
-/* Large SVG illustration */
-.photo svg {
-  width: 100%;
-  max-width: 520px;
-  height: auto;
+.hero-photo-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, var(--accent-teal), var(--accent-violet));
+  z-index: -1;
+  opacity: 0.7;
+  filter: blur(8px);
+}
+
+.hero-photo-wrapper img {
+  width: clamp(200px, 30vw, 360px);
+  border-radius: 22px;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
-.name {
+/* ── Hero Text ── */
+.hero-text {
   flex: 1;
-  min-width: 250px;
-  padding: 2rem;
-  text-align: left;
+  min-width: 0;
 }
 
-.name h1 {
-  margin: 0.5rem 0;
+.hero-greeting {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-name {
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-teal) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  margin-bottom: 1rem;
 }
 
-.name h2 {
-  margin: 0.5rem 0;
+.hero-role {
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-role-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--accent-teal-dim);
+  border: 1px solid rgba(0, 200, 215, 0.25);
+  border-radius: 20px;
+  font-size: 0.8rem;
   font-weight: 600;
+  color: var(--accent-teal);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
 }
 
-.name h4 {
-  margin: 1rem 0;
-  opacity: 0.8;
-  font-weight: 500;
-}
-
-.contact {
-  margin: 1.5rem 0;
-}
-
-.btn {
-  padding: 12px 24px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-}
-
-.btn-info {
-  background-color: #00bcd4;
-  color: white;
-}
-
-.btn-info:hover {
-  background-color: #00a8c4;
-  transform: translateY(-2px);
-}
-
-/* CTA Buttons Container */
+/* ── CTA Buttons ── */
 .cta-buttons {
   display: flex;
   gap: 1rem;
@@ -91,181 +136,156 @@
 }
 
 .btn-primary-cta {
-  background-color: #00bcd4;
-  color: white;
-  border: 2px solid #00bcd4;
+  padding: clamp(10px, 2vw, 14px) clamp(24px, 4vw, 36px) !important;
+  background: linear-gradient(135deg, var(--accent-teal), #00a8d4) !important;
+  color: #0f172a !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 200, 215, 0.3);
+  transition: box-shadow var(--transition-normal), transform var(--transition-fast) !important;
 }
 
 .btn-primary-cta:hover {
-  background-color: #00a8c4;
-  border-color: #00a8c4;
+  box-shadow: 0 6px 28px rgba(0, 200, 215, 0.5) !important;
 }
 
 .btn-secondary-cta {
-  background-color: transparent;
-  color: #00bcd4;
-  border: 2px solid #00bcd4;
+  padding: clamp(10px, 2vw, 14px) clamp(24px, 4vw, 36px) !important;
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.95rem !important;
+  cursor: pointer;
+  transition: border-color var(--transition-normal), background var(--transition-normal) !important;
 }
 
 .btn-secondary-cta:hover {
-  background-color: rgba(0, 188, 212, 0.1);
-  border-color: #00bcd4;
-  color: #00bcd4;
+  border-color: var(--accent-teal) !important;
+  background: var(--accent-teal-dim) !important;
+  color: var(--accent-teal) !important;
 }
 
-/* Card Title Section */
-.cardTitle {
+/* ── What I Do section ── */
+.what-i-do-section {
+  padding-top: clamp(3rem, 6vw, 6rem);
+  padding-bottom: clamp(3rem, 6vw, 6rem);
+  position: relative;
+}
+
+.section-heading-wrapper {
   text-align: center;
-  margin: 3rem 0 2rem 0;
-  padding: 0 1rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
-.cardTitle h1 {
-  font-weight: 700;
-  margin: 0;
-  color: #f5f5f5;
+.section-heading-wrapper h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--accent-violet) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Skills Grid */
-.skillsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-  padding: 2rem 1rem;
-}
-
-.skillIcon {
+/* ── Skills icon grid ── */
+.skills-icon-grid {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 1.5rem;
+}
+
+.skill-icon-item {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  width: 120px;
-  height: 120px;
-  margin: 0 auto;
+  gap: 0.5rem;
+  padding: 1.2rem 1rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  min-width: 80px;
+  cursor: default;
+  transition: background var(--transition-normal),
+              border-color var(--transition-normal),
+              transform var(--transition-normal),
+              box-shadow var(--transition-normal);
 }
 
-.skillIcon svg {
+.skill-icon-item:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: var(--accent-teal);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0, 200, 215, 0.2);
+}
+
+.skill-icon-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ── Illustration side ── */
+.hero-illustration {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-illustration svg {
   width: 100%;
-  height: 100%;
-  transition: transform 0.3s ease;
+  height: auto;
 }
 
-.skillIcon:hover svg {
-  transform: scale(1.1) rotate(5deg);
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
+/* SVG illustration title — auto-adapts to mode */
+.code-illustration-wrap svg { color: var(--text-primary); }
+
+
+
+.light .skill-icon-item {
+  background: rgba(255,255,255,0.8);
+  border-color: rgba(0,0,0,0.08);
 }
 
-/* ===== TABLET STYLES (768px and below) ===== */
-@media (max-width: 768px) {
-  .content {
+.light .skill-icon-label {
+  color: rgba(15,23,42,0.55);
+}
+
+@media (max-width: 900px) {
+  .hero-inner {
     flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    margin-top: 60px;
-    padding-top: 1.5rem;
     text-align: center;
   }
 
-  .photo {
-    width: 100%;
-    min-width: auto;
+  .hero-photo-wrapper img {
+    width: clamp(160px, 50vw, 280px);
   }
 
-  .photo img {
-    max-width: 300px;
-  }
-
-  .photo svg {
-    max-width: 380px;
-  }
-
-  .name {
-    width: 100%;
-    min-width: auto;
-    padding: 1.5rem;
-    text-align: center;
-  }
-
-  .name h1 {
-    font-size: 2.5rem !important;
-  }
-
-  .cardTitle h1 {
-    font-size: 2rem !important;
-  }
-
-  .skillsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 1rem;
-    padding: 1.5rem 0.5rem;
-  }
-
-  .skillIcon {
-    width: 100px;
-    height: 100px;
-  }
+  .cta-buttons { justify-content: center; }
+  .hero-role { justify-content: center; }
 }
 
-/* ===== MOBILE STYLES (480px and below) ===== */
-@media (max-width: 480px) {
-  .content {
-    margin-top: 60px;
-    padding-top: 1rem;
-    gap: 1rem;
-  }
+@media (max-width: 600px) {
+  .hero-section { min-height: auto; padding: 3rem 0; }
 
-  .occupation h1 {
-    font-size: 2rem !important;
-  }
+  .hero-photo-wrapper img { width: clamp(140px, 55vw, 220px); }
 
-  .photo svg {
-    max-width: 180px;
-    transform: scale(0.7);
-    opacity: 0.6;
-  }
+  .skills-icon-grid { gap: 0.75rem; }
+  .skill-icon-item { padding: 0.9rem 0.75rem; min-width: 68px; }
 
-  .photo img {
-    max-width: 200px;
-    border-radius: 30px;
-  }
-
-  .name {
-    padding: 1rem;
-  }
-
-  .name h1 {
-    font-size: 2rem !important;
-  }
-
-  .name h2 {
-    font-size: 1.5rem !important;
-  }
-
-  .name h4 {
-    font-size: 0.95rem !important;
-    margin: 0.75rem 0;
-  }
-
-  .btn {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
-
-  .cardTitle {
-    margin: 2rem 0 1.5rem 0;
-  }
-
-  .cardTitle h1 {
-    font-size: 1.5rem !important;
-  }
-
-  .skillsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 0.75rem;
-    padding: 1rem 0;
-  }
-
-  .skillIcon {
-    width: 80px;
-    height: 80px;
-  }
+  .cta-buttons { flex-direction: column; align-items: center; gap: 0.75rem; }
+  .btn-primary-cta, .btn-secondary-cta { width: 100%; max-width: 260px; }
 }
