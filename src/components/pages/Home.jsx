@@ -82,8 +82,8 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ── */}
-      <div className="container">
-        <section className="hero-section content">
+      <section className="hero-section content">
+        <div className="container">
           <motion.div
             className="hero-inner"
             variants={containerVariants}
@@ -142,12 +142,12 @@ export default function Home() {
               </motion.div>
             </div>
           </motion.div>
-        </section>
-      </div>
+        </div>
+      </section>
 
       {/* ── WHAT I DO ── */}
-      <div className="container">
-        <section className="what-i-do-section">
+      <section className="what-i-do-section">
+        <div className="container">
           <motion.div
             className="section-heading-wrapper"
             initial={{ opacity: 0, y: 20 }}
@@ -308,8 +308,8 @@ export default function Home() {
             </motion.div>
 
           </motion.div>
-        </section>
-      </div>
+        </div>
+      </section>
     </>
   );
 }
