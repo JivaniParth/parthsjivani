@@ -431,18 +431,6 @@ export default function Projects() {
         </motion.div>
       )}
 
-      {/* Note */}
-      <motion.p
-        className="projects-note"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-      >
-        Projects are documented case studies. Full source code and setup
-        instructions are available on GitHub. To read the research paper, place
-        the PDF at <code>/public/research-paper.pdf</code> in the project.
-      </motion.p>
-
     </div>
   );
 }
