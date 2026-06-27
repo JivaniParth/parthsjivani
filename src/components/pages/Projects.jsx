@@ -357,7 +357,7 @@ export default function Projects() {
         transition={{ duration: 0.6 }}
       >
         <span className="section-label">Portfolio</span>
-        <h1>Projects &amp; Research</h1>
+        <h1>Projects</h1>
         <p className="subtitle">
           Published research, engineering case studies, and full-stack applications
         </p>
