@@ -157,7 +157,7 @@ export default function Header({ darkMode, toggleDarkMode }) {
           <li className="nav-item"><NavLink to="/" label="Home" /></li>
           <li className="nav-item"><NavLink to="/about" label="About" /></li>
           <li className="nav-item"><NavLink to="/experience" label="Experience" /></li>
-          <li className="nav-item"><NavLink to="/projects" label="Projects & Research" /></li>
+          <li className="nav-item"><NavLink to="/projects" label="Projects" /></li>
           <li className="nav-item"><NavLink to="/contact-me" label="Contact Me" /></li>
         </ul>
       </header>
