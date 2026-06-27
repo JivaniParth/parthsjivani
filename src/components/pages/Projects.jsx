@@ -207,33 +207,48 @@ const ProjectCard = ({ project, isFeatured, index }) => {
           )}
 
           <div className="demo-btn-wrapper">
-            <button
-              className={`project-btn demo-btn ${project.isDeployed ? "" : "disabled"}`}
-              disabled={!project.isDeployed}
-              onMouseEnter={() => project.isDeployed && setShowTooltip(true)}
-              onMouseLeave={() => setShowTooltip(false)}
-              onFocus={() => project.isDeployed && setShowTooltip(true)}
-              onBlur={() => setShowTooltip(false)}
-              onKeyDown={(e) => {
-                if (e.key === "Escape") setShowTooltip(false);
-                if ((e.key === "Enter" || e.key === " ") && project.isDeployed) {
-                  e.preventDefault();
-                  setShowTooltip((s) => !s);
-                }
-              }}
-              onClick={() => {
-                if (project.isDeployed && project.liveDemoLink) {
-                  window.open(project.liveDemoLink, "_blank", "noopener,noreferrer");
-                }
-              }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-              Live Demo
-            </button>
+            {project.apkLink ? (
+              <a
+                href={project.apkLink}
+                download
+                className="project-btn demo-btn"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download APK
+              </a>
+            ) : (
+              <button
+                className={`project-btn demo-btn ${project.isDeployed ? "" : "disabled"}`}
+                disabled={!project.isDeployed}
+                onMouseEnter={() => project.isDeployed && setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
+                onFocus={() => project.isDeployed && setShowTooltip(true)}
+                onBlur={() => setShowTooltip(false)}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") setShowTooltip(false);
+                  if ((e.key === "Enter" || e.key === " ") && project.isDeployed) {
+                    e.preventDefault();
+                    setShowTooltip((s) => !s);
+                  }
+                }}
+                onClick={() => {
+                  if (project.isDeployed && project.liveDemoLink) {
+                    window.open(project.liveDemoLink, "_blank", "noopener,noreferrer");
+                  }
+                }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Live Demo
+              </button>
+            )}
           </div>
           {showTooltip && !project.isDeployed && (
             <span className="tooltip">Not deployed (GitHub only)</span>
@@ -252,6 +267,7 @@ ProjectCard.propTypes = {
     githubRepo: PropTypes.string.isRequired,
     caseStudyLink: PropTypes.string,
     liveDemoLink: PropTypes.string,
+    apkLink: PropTypes.string,
     isDeployed: PropTypes.bool.isRequired,
   }).isRequired,
   isFeatured: PropTypes.bool.isRequired,
@@ -272,8 +288,22 @@ export default function Projects() {
       githubRepo: "https://github.com/JivaniParth/online-book-store",
       caseStudyLink: "https://github.com/JivaniParth/BookHaven-System-Design-Study",
       liveDemoLink: null,
+      apkLink: null,
       isFeatured: false,
       isDeployed: false,
+    },
+    {
+      id: 5,
+      title: "Hisab & Expense Tracker — Android Native App",
+      description:
+        "A feature-rich native Android application for personal finance management. Features Jetpack Compose UI, Room database for offline-first local storage, and Supabase backend with Row-Level Security (RLS) for cloud synchronization.",
+      techStack: ["Kotlin", "Jetpack Compose", "Android Room", "Supabase", "REST API", "Coroutines"],
+      githubRepo: "https://github.com/JivaniParth/Hisab-and-Expense-Tracker",
+      caseStudyLink: null,
+      liveDemoLink: null,
+      apkLink: "/hisab-tracker.apk",
+      isFeatured: true,
+      isDeployed: true,
     },
     {
       id: 2,
