@@ -326,7 +326,7 @@ export default function Projects() {
       githubRepo: "https://github.com/JivaniParth/aradhya-gems",
       caseStudyLink: null,
       liveDemoLink: "https://aradhyagems.in/",
-      isFeatured: true,
+      isFeatured: false,
       isDeployed: true,
     },
     {
